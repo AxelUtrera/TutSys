@@ -3,8 +3,13 @@ package gestor.de.tutorias.modelo.pojo;
 
 /**
  *
- * @author Jordan Utrera
+ * Autor: Axel Utrera
+ * Fecha de creacion: 17/05/2022
+ * Ultima modificacion: 22/05/2022
+ * Nombre modificador: Axel Utrera
+ *
  */
+
 public class Profesor {
     private String correoElectronio;
     private String nombre;
