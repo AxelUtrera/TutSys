@@ -21,7 +21,6 @@
 
 #Packages creted by IDE.
 .idea/
-lib/
 nbproject/
 
 #Database Script
