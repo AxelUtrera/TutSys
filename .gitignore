@@ -19,5 +19,12 @@
 *.tar.gz
 *.rar
 
+#Packages creted by IDE.
+.idea/
+nbproject/
+
+#Database Script
+Proyecto_equipo-3.sql
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
