@@ -22,6 +22,7 @@
 #Packages creted by IDE.
 .idea/
 nbproject/
+out/
 
 #Database Script
 Proyecto_equipo-3.sql
