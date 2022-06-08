@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Gestor de tutorias.iml" filepath="$PROJECT_DIR$/Gestor de tutorias.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TutSys.iml" filepath="$PROJECT_DIR$/TutSys.iml" />
     </modules>
   </component>
 </project>
