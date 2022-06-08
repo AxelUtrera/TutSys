@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="551.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestor.de.tutorias.vistas.RegistroProblematicaAcademicaControlador">
+   <children>
+      <Label layoutX="55.0" layoutY="46.0" text="Registro de problematica academica">
+         <font>
+            <Font name="Roboto Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="102.0" text="Seleccione la tutoria academica">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelFechaHoy" layoutX="606.0" layoutY="50.0" text="Hoy es ">
+         <font>
+            <Font name="Roboto Medium" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxTutorias" layoutX="55.0" layoutY="120.0" prefHeight="26.0" prefWidth="242.0" />
+      <Label layoutX="71.0" layoutY="173.0" />
+      <Label layoutX="55.0" layoutY="154.0" text="Descripción:">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="textAreaDescripcion" layoutX="55.0" layoutY="176.0" prefHeight="200.0" prefWidth="656.0" />
+      <Label layoutX="55.0" layoutY="377.0" text="Numero de reportes:">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="426.0" text="Seleccione la experiencia educativa:">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="383.0" layoutY="426.0" text="Seleccione el profesor:">
+         <font>
+            <Font name="Roboto" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxExperienciaEducativa" layoutX="55.0" layoutY="444.0" prefHeight="26.0" prefWidth="251.0" />
+      <ComboBox fx:id="comboBoxProfesor" layoutX="383.0" layoutY="444.0" prefHeight="26.0" prefWidth="313.0" />
+      <TextField fx:id="textFieldNumeroReportes" layoutX="55.0" layoutY="396.0" prefHeight="26.0" prefWidth="251.0" />
+      <Button layoutX="457.0" layoutY="510.0" mnemonicParsing="false" onAction="#clicRegistrar" prefHeight="26.0" prefWidth="110.0" text="Registrar" />
+      <Button layoutX="606.0" layoutY="509.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="26.0" prefWidth="104.0" text="Cancelar" />
+   </children>
+</AnchorPane>
