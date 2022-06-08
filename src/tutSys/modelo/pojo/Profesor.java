@@ -1,5 +1,5 @@
 
-package gestor.de.tutorias.modelo.pojo;
+package tutSys.modelo.pojo;
 
 /**
  *
@@ -15,6 +15,9 @@ public class Profesor {
     private String nombre;
     private String numeroEmpleado;
     private String numeroTelefono;
+
+    public Profesor() {
+    }
 
     public Profesor(String correoElectronio, String nombre, String numeroEmpleado, String numeroTelefono) {
         this.correoElectronio = correoElectronio;
