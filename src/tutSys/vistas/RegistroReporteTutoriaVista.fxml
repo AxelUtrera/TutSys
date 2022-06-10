@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.RegistroReporteTutoriaControlador">
+   <children>
+      <Label layoutX="22.0" layoutY="28.0" text="Registro de reporte de tutoría académica">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="61.0" text="Periodo escolar: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelPeriodoEscolar" layoutX="125.0" layoutY="61.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="669.0" layoutY="29.0" text="Hoy es:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelFecha" layoutX="725.0" layoutY="29.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="120.0" text="Seleccione la tutoría academica:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxTutoriaAcademica" layoutX="22.0" layoutY="140.0" prefHeight="21.0" prefWidth="300.0" />
+      <Label layoutX="527.0" layoutY="100.0" text="Tutor académico:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="527.0" layoutY="120.0" text="Fecha de tutoría: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="527.0" layoutY="141.0" text="Fecha de cierre de reporte:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableViewAlumnos" layoutX="21.0" layoutY="216.0" prefHeight="313.0" prefWidth="870.0">
+        <columns>
+          <TableColumn fx:id="tableColumnMatricula" prefWidth="162.0" text="Matrícula" />
+          <TableColumn fx:id="tableColumnNombre" prefWidth="379.0" text="Nombre" />
+            <TableColumn fx:id="tableColumnAsistio" prefWidth="170.0" text="¿Asistió?" />
+            <TableColumn fx:id="tableColumnRiesgo" prefWidth="158.0" text="¿En riesgo?" />
+        </columns>
+      </TableView>
+      <Button defaultButton="true" layoutX="631.0" layoutY="537.0" mnemonicParsing="false" onAction="#clicRegistrarReporteTutoria" prefHeight="39.0" prefWidth="122.0" text="Registrar">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button cancelButton="true" layoutX="769.0" layoutY="537.0" mnemonicParsing="false" onAction="#clicCancelarRegistroReporteTutoria" prefHeight="39.0" prefWidth="122.0" text="Cancelar">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="22.0" layoutY="188.0" text="Seleccione los estudiantes asistentes y en riesgo:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTutorAcademico" layoutX="643.0" layoutY="100.0" prefHeight="20.0" prefWidth="245.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelFechaTutoria" layoutX="643.0" layoutY="120.0" prefHeight="20.0" prefWidth="245.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelFechaCierreReporte" layoutX="699.0" layoutY="141.0" prefHeight="20.0" prefWidth="190.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
