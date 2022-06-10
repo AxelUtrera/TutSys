@@ -53,6 +53,9 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     private TextField textFieldNumeroReportes;
 
     @FXML
+    private Label labelErrorTutoria;
+
+    @FXML
     private Label labelErrorDescripcion;
 
     @FXML
@@ -119,11 +122,13 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
          boolean esValido = true;
 
+         labelErrorTutoria.setVisible(false);
          labelErrorDescripcion.setVisible(false);
          labelErrorNumeroReportes.setVisible(false);
          labelErrorExperienciaEducativa.setVisible(false);
          labelErrorProfesor.setVisible(false);
 
+         String sesionTutoria = comboBoxTutorias.getValue();
          String textoDescripcion = textAreaDescripcion.getText();
          String textoNumeroReportes = textFieldNumeroReportes.getText();
          String experienciaEducativaSeleccionada = comboBoxExperienciaEducativa.getValue();
@@ -136,6 +141,10 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
             esValido = false;
          }
 
+         if(sesionTutoria == null){
+             labelErrorTutoria.setVisible(true);
+             esValido = false;
+         }
          if(textoDescripcion.isEmpty()){
              labelErrorDescripcion.setVisible(true);
              esValido = false;
