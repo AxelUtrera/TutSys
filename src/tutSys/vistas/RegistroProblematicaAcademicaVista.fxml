@@ -8,51 +8,70 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="551.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestor.de.tutorias.vistas.RegistroProblematicaAcademicaControlador">
+<AnchorPane prefHeight="551.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLRegistroProblematicaAcademicaControlador">
    <children>
       <Label layoutX="55.0" layoutY="46.0" text="Registro de problematica academica">
          <font>
             <Font name="Roboto Medium" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="55.0" layoutY="102.0" text="Seleccione la tutoria academica">
+      <Label layoutX="55.0" layoutY="73.0" text="Seleccione la tutoria academica">
          <font>
             <Font name="Roboto" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="labelFechaHoy" layoutX="606.0" layoutY="50.0" text="Hoy es ">
+      <Label fx:id="labelFechaHoy" layoutX="567.0" layoutY="50.0" prefHeight="18.0" prefWidth="159.0" text="label">
          <font>
             <Font name="Roboto Medium" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxTutorias" layoutX="55.0" layoutY="120.0" prefHeight="26.0" prefWidth="242.0" />
+      <ComboBox fx:id="comboBoxTutorias" layoutX="55.0" layoutY="91.0" prefHeight="26.0" prefWidth="242.0" />
       <Label layoutX="71.0" layoutY="173.0" />
-      <Label layoutX="55.0" layoutY="154.0" text="Descripción:">
+      <Label layoutX="53.0" layoutY="140.0" text="Descripción:">
          <font>
             <Font name="Roboto" size="12.0" />
          </font>
       </Label>
-      <TextArea fx:id="textAreaDescripcion" layoutX="55.0" layoutY="176.0" prefHeight="200.0" prefWidth="656.0" />
+      <TextArea fx:id="textAreaDescripcion" layoutX="52.0" layoutY="158.0" prefHeight="200.0" prefWidth="656.0" />
       <Label layoutX="55.0" layoutY="377.0" text="Numero de reportes:">
          <font>
             <Font name="Roboto" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="426.0" text="Seleccione la experiencia educativa:">
+      <Label layoutX="57.0" layoutY="441.0" text="Seleccione la experiencia educativa:">
          <font>
             <Font name="Roboto" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="383.0" layoutY="426.0" text="Seleccione el profesor:">
+      <Label layoutX="383.0" layoutY="441.0" text="Seleccione el profesor:">
          <font>
             <Font name="Roboto" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxExperienciaEducativa" layoutX="55.0" layoutY="444.0" prefHeight="26.0" prefWidth="251.0" />
-      <ComboBox fx:id="comboBoxProfesor" layoutX="383.0" layoutY="444.0" prefHeight="26.0" prefWidth="313.0" />
+      <ComboBox fx:id="comboBoxExperienciaEducativa" layoutX="55.0" layoutY="459.0" prefHeight="26.0" prefWidth="251.0" />
+      <ComboBox fx:id="comboBoxProfesor" layoutX="383.0" layoutY="459.0" prefHeight="26.0" prefWidth="313.0" />
       <TextField fx:id="textFieldNumeroReportes" layoutX="55.0" layoutY="396.0" prefHeight="26.0" prefWidth="251.0" />
       <Button layoutX="457.0" layoutY="510.0" mnemonicParsing="false" onAction="#clicRegistrar" prefHeight="26.0" prefWidth="110.0" text="Registrar" />
       <Button layoutX="606.0" layoutY="509.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="26.0" prefWidth="104.0" text="Cancelar" />
+      <Label fx:id="labelErrorDescripcion" layoutX="55.0" layoutY="360.0" text="Ingrese una descripcion" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelErrorNumeroReportes" layoutX="55.0" layoutY="422.0" text="Ingrese un numero valido de reporte" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelErrorExperienciaEducativa" layoutX="55.0" layoutY="488.0" text="Seleccione una experiencia educativa" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelErrorProfesor" layoutX="383.0" layoutY="488.0" text="Seleccione un profesor" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

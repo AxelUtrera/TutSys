@@ -6,6 +6,8 @@ public class ExperienciaEducativa {
     private String nrc;
     private String programaEducativo;
 
+    public ExperienciaEducativa(){}
+
     public ExperienciaEducativa(int creditos, String nombre, String nrc, String programaEducativo) {
         this.creditos = creditos;
         this.nombre = nombre;

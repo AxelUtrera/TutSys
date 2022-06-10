@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class InicioSesionControlador {
+public class FXMLInicioSesionControlador {
 
     @FXML
     private PasswordField passwordFieldContraseña;

@@ -12,7 +12,7 @@ import tutSys.modelo.pojo.Profesor;
 public class ProfesorDAO {
 
     public static ArrayList<Profesor> recuperarTodosProfesores(){
-        ArrayList listaProfesoresBD = new ArrayList<>();
+        ArrayList<Profesor> listaProfesoresBD = new ArrayList<>();
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if (conexionBD != null){
             String consulta = "SELECT * FROM profesor";
