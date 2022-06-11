@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="575.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLMenuTutSysControlador">
+   <children>
+      <Label layoutX="26.0" layoutY="41.0" text="Bienvenida/o!: " />
+      <Label fx:id="labelNombreUsuario" layoutX="145.0" layoutY="41.0" prefHeight="27.0" prefWidth="253.0" />
+      <Label layoutX="731.0" layoutY="41.0" text="Hoy es: " />
+      <Label fx:id="labelFecha" layoutX="792.0" layoutY="41.0" prefHeight="27.0" prefWidth="111.0" />
+      <ImageView fitHeight="429.0" fitWidth="435.0" layoutX="-166.0" layoutY="86.0" opacity="0.39" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/imagenes/1200px-Logo_de_la_Universidad_Veracruzana.svg.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="26.0" layoutY="146.0" mnemonicParsing="false" onAction="#invocarLlenarReporteTutoria" prefHeight="142.0" prefWidth="281.0" text="Llenar Reporte de Tutoría Académica" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="325.0" layoutY="146.0" mnemonicParsing="false" onAction="#invocarRegistroProblematicaAcademica" prefHeight="142.0" prefWidth="281.0" text="Registrar Problematica Académica" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="622.0" layoutY="146.0" mnemonicParsing="false" onAction="#invocarConsultarProblematicasAcademicas" prefHeight="142.0" prefWidth="281.0" text="Consultar Problematicas Académicas" textAlignment="CENTER" wrapText="true" />
+   </children>
+</AnchorPane>
