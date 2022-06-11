@@ -6,6 +6,9 @@ public class TutorAcademico {
     private String programaEducativo;
     private String telefono;
 
+    public TutorAcademico() {
+    }
+
     public TutorAcademico(String correoElectronico, String nombre, String programaEducativo, String telefono) {
         this.correoElectronico = correoElectronico;
         this.nombre = nombre;

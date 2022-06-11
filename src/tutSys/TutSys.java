@@ -1,3 +1,9 @@
+/*
+ *Autor: Axel Jordano Morales Utrera
+ *Fecha de creacion: 09/06/2022
+ *Ultima modificacion: 10/06/2022
+ *Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
 
 package tutSys;
 
@@ -11,18 +17,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Axel Utrera
- */
 public class TutSys extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("vistas/RegistroProblematicaAcademicaVista.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("vistas/InicioSesionVista.fxml"));
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Inicio de sesión");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
