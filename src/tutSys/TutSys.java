@@ -8,13 +8,9 @@
 package tutSys;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class TutSys extends Application {
@@ -23,7 +19,6 @@ public class TutSys extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("vistas/InicioSesionVista.fxml"));
         Scene scene = new Scene(root);
-        
         primaryStage.setTitle("Inicio de sesión");
         primaryStage.setScene(scene);
         primaryStage.show();

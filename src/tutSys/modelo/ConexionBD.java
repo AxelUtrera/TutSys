@@ -11,8 +11,8 @@ public class ConexionBD {
     public static final String PORT = "3306";
     public static final String URL_CONEXION = "jdbc:mysql://"+HOSTNAME+":"+PORT+"/"+DATABASE+"?serverTimezone=UTC";;
 
-    public static final String USERNAME = "pax";
-    public static final String PASSWORD = "daniel98";
+    public static final String USERNAME = "Jordan";
+    public static final String PASSWORD = "admin";
 
     public static Connection abrirConexionBD(){
         Connection conexionBD = null;
