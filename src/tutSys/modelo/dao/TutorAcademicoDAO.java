@@ -1,4 +1,4 @@
-/*
+/**
  *Autor: Daniel Eduardo Anota Paxtian
  *Fecha de creacion: 10/06/2022
  *Ultima modificacion: 10/06/2022

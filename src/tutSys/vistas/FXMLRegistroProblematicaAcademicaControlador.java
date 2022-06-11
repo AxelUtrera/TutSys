@@ -23,8 +23,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tutSys.modelo.dao.ExperienciaEducativaDAO;
 import tutSys.modelo.dao.ProfesorDAO;
+import tutSys.modelo.dao.ReporteTutoriaAcademicaDAO;
 import tutSys.modelo.pojo.ExperienciaEducativa;
 import tutSys.modelo.pojo.Profesor;
+import tutSys.modelo.pojo.ReporteTutoriaAcademica;
+import tutSys.modelo.pojo.TutorAcademico;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -35,6 +38,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FXMLRegistroProblematicaAcademicaControlador implements Initializable {
+
+    public static TutorAcademico tutorAcademico;
 
     @FXML
     private ComboBox<String> comboBoxExperienciaEducativa;
@@ -82,17 +87,25 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        llenarComboboxSecionTutorias();
+        llenarComboboxSesionTutorias();
         llenarComboboxExperienciasEducativas();
         obsevarCambiosComboboxExperienciaEducativa();
-        colocarFechaHoy();
+        colocarFechaActual();
     }
 
-    public void llenarComboboxSecionTutorias() {
-        String nombreSesiones[] = {"Primera sesión", "Segunda sesión", "Tercera sesión"};
-        ObservableList<String> sesionesTutoria = FXCollections.observableArrayList();
-        sesionesTutoria.addAll(nombreSesiones);
-        comboBoxTutorias.setItems(sesionesTutoria);
+    public void llenarComboboxSesionTutorias() {
+        if (tutorAcademico != null){
+            ArrayList<ReporteTutoriaAcademica> sesionesRecuperadas = ReporteTutoriaAcademicaDAO.consultarReportesTutoriaPorTutor(tutorAcademico);
+            ObservableList<String> sesionesTutoria = FXCollections.observableArrayList();
+
+            for(ReporteTutoriaAcademica sesion : sesionesRecuperadas){
+                sesionesTutoria.add("Sesion "+String.valueOf(sesion.getNumeroSesionTutoria()) + "  " + sesion.getIdPeriodoEscolar());
+            }
+            comboBoxTutorias.setItems(sesionesTutoria);
+        }else{
+            System.out.println("El tutor se encuentra vacio");
+        }
+
     }
 
     public void llenarComboboxExperienciasEducativas() {
@@ -134,7 +147,7 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
         comboBoxProfesor.setItems(profesores);
     }
 
-    public Label colocarFechaHoy() {
+    public Label colocarFechaActual() {
         Date fechaHoy = new Date();
         labelFechaHoy.setText("Fecha de hoy: " + new SimpleDateFormat("dd/MM/yyyy").format(fechaHoy));
         return labelFechaHoy;
@@ -184,6 +197,7 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
         return esValido;
     }
+
 
 }
 

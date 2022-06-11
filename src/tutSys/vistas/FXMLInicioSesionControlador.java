@@ -42,6 +42,9 @@ public class FXMLInicioSesionControlador {
 
             if(usuarioSesion != null){
                 CuadroDialogo.crearCuadroDialogoInformacion("Bienvenida/o!", "Bienvenida/o " + usuarioSesion.getNombre());
+                //Se inicializa la variable estatica para tener acceso a los datos desde la otra ventana.
+                FXMLMenuTutSysControlador.tutorAcademico = usuarioSesion;
+                FXMLRegistroProblematicaAcademicaControlador.tutorAcademico = usuarioSesion;
                 invocarMenuPrincipal();
             } else {
                 CuadroDialogo.crearCuadroDialogoError("Usuario no encontrado", "El usuario o la contraseña ingresada no existen");

@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tutSys.modelo.pojo.TutorAcademico;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,9 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class FXMLMenuTutSysControlador implements Initializable {
+
+    public static TutorAcademico tutorAcademico;
+
     @FXML
     public Label labelNombreUsuario;
     @FXML
@@ -55,6 +59,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
             escenarioPrincipal.setScene(registroProblematicaAcademica);
             escenarioPrincipal.setTitle("TutSys - Registrar Problematica Académica");
             escenarioPrincipal.show();
+
         } catch (IOException excepcion){
             excepcion.printStackTrace();
         }
