@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -9,12 +14,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLInicioSesionControlador">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLInicioSesionControlador">
    <children>
       <ImageView fitHeight="400.0" fitWidth="342.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/img/Tutorias.png" />
+            <Image url="@../recursos/imagenes/Tutorias.png" />
          </image>
       </ImageView>
       <Label layoutX="379.0" layoutY="63.0" text="Inicio de sesión">
@@ -26,6 +30,16 @@
       <Label layoutX="376.0" layoutY="126.0" text="Usuario" />
       <TextField fx:id="textFieldUsuario" layoutX="377.0" layoutY="151.0" />
       <PasswordField fx:id="passwordFieldContraseña" layoutX="377.0" layoutY="225.0" />
-      <Button layoutX="409.0" layoutY="273.0" mnemonicParsing="false" onAction="#clicIniciarSesion" text="Iniciar sesión" />
+      <Button defaultButton="true" layoutX="409.0" layoutY="273.0" mnemonicParsing="false" onAction="#clicIniciarSesion" text="Iniciar sesión" />
+      <Label fx:id="labelUsuarioError" layoutX="377.0" layoutY="179.0" text="Ingrese nombre de usuario" textFill="RED" visible="false">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelContraseniaError" layoutX="379.0" layoutY="252.0" text="Ingrese contraseña" textFill="RED" visible="false">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

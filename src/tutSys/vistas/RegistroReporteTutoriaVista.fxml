@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.RegistroReporteTutoriaControlador">
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLRegistroReporteTutoriaControlador">
    <children>
       <Label layoutX="22.0" layoutY="28.0" text="Registro de reporte de tutoría académica">
          <font>

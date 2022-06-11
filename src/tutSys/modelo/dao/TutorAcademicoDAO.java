@@ -18,18 +18,22 @@ public class TutorAcademicoDAO {
     public static TutorAcademico recuperarTutorAcademico(String usuario, String contrasenia){
         Connection conexionBD = ConexionBD.abrirConexionBD();
         TutorAcademico tutorRecuperado = new TutorAcademico();
-        String consulta = "SELECT * FROM tutoracademico WHERE usuario = ? AND contrasenia = ?";
-        try {
-            PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
-            prepararConsulta.setString(1, usuario);
-            prepararConsulta.setString(2, contrasenia);
-            ResultSet resultadoConsulta = prepararConsulta.executeQuery();
-            if(resultadoConsulta.next()){
-                tutorRecuperado.setNombre(resultadoConsulta.getString("nombre"));
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM tutoracademico WHERE usuario = ? AND contrasenia = ?";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setString(1, usuario);
+                prepararConsulta.setString(2, contrasenia);
+                ResultSet resultadoConsulta = prepararConsulta.executeQuery();
+                if(resultadoConsulta.next()){
+                    tutorRecuperado.setNombre(resultadoConsulta.getString("nombre"));
+                }else {
+                    tutorRecuperado = null;
+                }
+                conexionBD.close();
+            } catch (SQLException excepcion){
+                excepcion.printStackTrace();
             }
-            conexionBD.close();
-        } catch (SQLException excepcion){
-            excepcion.printStackTrace();
         }
         return tutorRecuperado;
     }

@@ -31,5 +31,13 @@ public class CuadroDialogo {
         alerta.showAndWait();
     }
 
+    public static void crearCuadroDialogoInformacion(String titulo, String mensaje){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
 
 }
