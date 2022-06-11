@@ -11,6 +11,7 @@ package tutSys.modelo.pojo;
  */
 
 public class Profesor {
+    private int idProfesor;
     private String correoElectronio;
     private String nombre;
     private String numeroEmpleado;
@@ -19,11 +20,12 @@ public class Profesor {
     public Profesor() {
     }
 
-    public Profesor(String correoElectronio, String nombre, String numeroEmpleado, String numeroTelefono) {
-        this.correoElectronio = correoElectronio;
-        this.nombre = nombre;
-        this.numeroEmpleado = numeroEmpleado;
-        this.numeroTelefono = numeroTelefono;
+    public int getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(int idProfesor) {
+        this.idProfesor = idProfesor;
     }
 
     public String getCorreoElectronio() {

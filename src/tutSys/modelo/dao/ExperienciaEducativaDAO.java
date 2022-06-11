@@ -3,10 +3,10 @@ package tutSys.modelo.dao;
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.ExperienciaEducativa;
 
-/*
+/**
  *
  * fecha de creacion: 8 / 06 / 2022
- *
+ * ultima modificacion : 10 / 06 / 2022
  * autor: Axel Utrera
  *
  * */
@@ -23,24 +23,25 @@ public class ExperienciaEducativaDAO {
         ArrayList<ExperienciaEducativa> listaExperienciasEducativas = new ArrayList<>();
         Connection conexionBD = ConexionBD.abrirConexionBD();
         String consulta = "SELECT * FROM experienciaEducativa";
-        try {
-            PreparedStatement preparacionConsulta = conexionBD.prepareStatement(consulta);
-            ResultSet resultadoConsulta = preparacionConsulta.executeQuery();
+        if(conexionBD != null) {
+            try {
+                PreparedStatement preparacionConsulta = conexionBD.prepareStatement(consulta);
+                ResultSet resultadoConsulta = preparacionConsulta.executeQuery();
 
-            while(resultadoConsulta.next()){
-                ExperienciaEducativa experienciaEducativa = new ExperienciaEducativa();
-                experienciaEducativa.setNombre(resultadoConsulta.getString("nombre"));
-                experienciaEducativa.setProgramaEducativo(resultadoConsulta.getString("idProgramaEducativo"));
-                experienciaEducativa.setCreditos(resultadoConsulta.getInt("creditos"));
-                experienciaEducativa.setNrc(resultadoConsulta.getString("NRC"));
-                listaExperienciasEducativas.add(experienciaEducativa);
+                while (resultadoConsulta.next()) {
+                    ExperienciaEducativa experienciaEducativa = new ExperienciaEducativa();
+                    experienciaEducativa.setIdExperienciaEducativa(resultadoConsulta.getInt("idExperienciaEducativa"));
+                    experienciaEducativa.setNombre(resultadoConsulta.getString("nombre"));
+                    experienciaEducativa.setProgramaEducativo(resultadoConsulta.getString("idProgramaEducativo"));
+                    experienciaEducativa.setCreditos(resultadoConsulta.getInt("creditos"));
+                    experienciaEducativa.setNrc(resultadoConsulta.getString("NRC"));
+                    listaExperienciasEducativas.add(experienciaEducativa);
+                }
+                conexionBD.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-        }catch (SQLException ex){
-            ex.printStackTrace();
         }
-
         return listaExperienciasEducativas;
     }
-
-
 }

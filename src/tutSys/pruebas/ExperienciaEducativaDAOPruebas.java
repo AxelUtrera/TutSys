@@ -1,4 +1,4 @@
-package tutSys.test;
+package tutSys.pruebas;
 
 import org.junit.Test;
 import org.junit.Assert.*;

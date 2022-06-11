@@ -1,6 +1,7 @@
 package tutSys.modelo.pojo;
 
 public class ExperienciaEducativa {
+    private int idExperienciaEducativa;
     private int creditos;
     private String nombre;
     private String nrc;
@@ -8,11 +9,12 @@ public class ExperienciaEducativa {
 
     public ExperienciaEducativa(){}
 
-    public ExperienciaEducativa(int creditos, String nombre, String nrc, String programaEducativo) {
-        this.creditos = creditos;
-        this.nombre = nombre;
-        this.nrc = nrc;
-        this.programaEducativo = programaEducativo;
+    public int getIdExperienciaEducativa() {
+        return idExperienciaEducativa;
+    }
+
+    public void setIdExperienciaEducativa(int idExperienciaEducativa) {
+        this.idExperienciaEducativa = idExperienciaEducativa;
     }
 
     public int getCreditos() {
