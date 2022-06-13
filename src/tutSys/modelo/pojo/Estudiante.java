@@ -1,18 +1,35 @@
 package tutSys.modelo.pojo;
 
+import javafx.scene.control.CheckBox;
+
 public class Estudiante {
+    private int idEstudiante;
     private String correoInstitucional;
     private String matricula;
     private String nombre;
     private String periodosCursados;
     private String programaEducativo;
+    private CheckBox asiste;
+    private CheckBox riesgo;
 
-    public Estudiante(String correoInstitucional, String matricula, String nombre, String periodosCursados, String programaEducativo) {
+    public Estudiante() {
+    }
+
+    public Estudiante(int idEstudiante, String correoInstitucional, String matricula, String nombre, String periodosCursados, String programaEducativo) {
+        this.idEstudiante = idEstudiante;
         this.correoInstitucional = correoInstitucional;
         this.matricula = matricula;
         this.nombre = nombre;
         this.periodosCursados = periodosCursados;
         this.programaEducativo = programaEducativo;
+    }
+
+    public int getIdEstudiante() {
+        return idEstudiante;
+    }
+
+    public void setIdEstudiante(int idEstudiante) {
+        this.idEstudiante = idEstudiante;
     }
 
     public String getCorreoInstitucional() {
@@ -53,5 +70,21 @@ public class Estudiante {
 
     public void setProgramaEducativo(String programaEducativo) {
         this.programaEducativo = programaEducativo;
+    }
+
+    public CheckBox getAsiste() {
+        return asiste;
+    }
+
+    public void setAsiste(CheckBox asiste) {
+        this.asiste = asiste;
+    }
+
+    public CheckBox getRiesgo() {
+        return riesgo;
+    }
+
+    public void setRiesgo(CheckBox riesgo) {
+        this.riesgo = riesgo;
     }
 }

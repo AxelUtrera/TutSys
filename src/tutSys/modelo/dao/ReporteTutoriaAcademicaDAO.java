@@ -54,4 +54,28 @@ public class ReporteTutoriaAcademicaDAO {
         return listaReportesRecuperados;
     }
 
+
+    public static int registrarReporteTutoriaAcademica(int numeroAsistentes, int numeroRiesgo, int idTutor, int idTutoria){
+        int registroExitoso;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        String consulta = "INSERT INTO reportetutoriaacademica " +
+                "(numeroAlumnosAsistentes, numeroAlumnosRiesgo, idTutorAcademico, idTutoriaAcademica) VALUES (?, ?, ?, ?);";
+        if(conexionBD != null){
+            try {
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, numeroAsistentes);
+                prepararConsulta.setInt(2, numeroRiesgo);
+                prepararConsulta.setInt(3, idTutor);
+                prepararConsulta.setInt(4, idTutoria);
+                registroExitoso = prepararConsulta.executeUpdate();
+            } catch (SQLException excepcion){
+                registroExitoso = 0;
+                excepcion.printStackTrace();
+            }
+        } else {
+            registroExitoso = 0;
+        }
+        return registroExitoso;
+    }
+
 }

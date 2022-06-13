@@ -1,6 +1,7 @@
 package tutSys.modelo.pojo;
 
 public class TutorAcademico {
+    private int idTutorAcademico;
     private String correoElectronico;
     private String nombre;
     private String programaEducativo;
@@ -9,11 +10,20 @@ public class TutorAcademico {
     public TutorAcademico() {
     }
 
-    public TutorAcademico(String correoElectronico, String nombre, String programaEducativo, String telefono) {
+    public TutorAcademico(int idTutorAcademico, String correoElectronico, String nombre, String programaEducativo, String telefono) {
+        this.idTutorAcademico = idTutorAcademico;
         this.correoElectronico = correoElectronico;
         this.nombre = nombre;
         this.programaEducativo = programaEducativo;
         this.telefono = telefono;
+    }
+
+    public int getIdTutorAcademico() {
+        return idTutorAcademico;
+    }
+
+    public void setIdTutorAcademico(int idTutorAcademico) {
+        this.idTutorAcademico = idTutorAcademico;
     }
 
     public String getCorreoElectronico() {

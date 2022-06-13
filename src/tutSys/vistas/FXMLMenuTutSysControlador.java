@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import tutSys.TutSys;
 import tutSys.modelo.pojo.TutorAcademico;
 
 import java.io.IOException;
@@ -27,27 +28,29 @@ import java.util.ResourceBundle;
 public class FXMLMenuTutSysControlador implements Initializable {
 
     public static TutorAcademico tutorAcademico;
-
     @FXML
     public Label labelNombreUsuario;
     @FXML
     public Label labelFecha;
-    public String nombreUsuario;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colocarFechaActual();
+        colocarNombreUsuario();
     }
 
     @FXML
     public void invocarLlenarReporteTutoria(ActionEvent actionEvent) {
         try{
-            Stage escenarioPrincipal = (Stage) labelNombreUsuario.getScene().getWindow();
-            Scene llenarReporteTutoria = new Scene(FXMLLoader.load(getClass().getResource("RegistroReporteTutoriaVista.fxml")));
-            escenarioPrincipal.setScene(llenarReporteTutoria);
-            escenarioPrincipal.setTitle("TutSys - Llenar Reporte de Tutoría Académica");
-            escenarioPrincipal.show();
+            FXMLRegistroReporteTutoriaControlador.tutorAcademico = tutorAcademico;
+            FXMLLoader cargador =  new FXMLLoader(getClass().getResource("RegistroReporteTutoriaVista.fxml"));
+            Parent root = cargador.load();
+            Scene escena = new Scene(root);
+            Stage escenario = new Stage();
+            escenario.setScene(escena);
+            escenario.initModality(Modality.APPLICATION_MODAL);
+            escenario.showAndWait();
         } catch (IOException excepcion){
             excepcion.printStackTrace();
         }
@@ -83,7 +86,10 @@ public class FXMLMenuTutSysControlador implements Initializable {
 
     private void colocarFechaActual(){
         Date fechaActual = new Date();
-        labelFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(fechaActual));
+        labelFecha.setText("Hoy es: " + new SimpleDateFormat("dd/MM/yyyy").format(fechaActual));
     }
 
+    private void colocarNombreUsuario(){
+        labelNombreUsuario.setText("Bienvenida/o!: " + tutorAcademico.getNombre());
+    }
 }

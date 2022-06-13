@@ -28,6 +28,7 @@ public class TutorAcademicoDAO {
                 prepararConsulta.setString(2, contrasenia);
                 ResultSet resultadoConsulta = prepararConsulta.executeQuery();
                 if(resultadoConsulta.next()){
+                    tutorRecuperado.setIdTutorAcademico(resultadoConsulta.getInt("idTutorAcademico"));
                     tutorRecuperado.setNombre(resultadoConsulta.getString("nombre"));
                 }else {
                     tutorRecuperado = null;
