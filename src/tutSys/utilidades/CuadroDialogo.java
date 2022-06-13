@@ -31,12 +31,15 @@ public class CuadroDialogo {
         alerta.showAndWait();
     }
 
-    public static void crearCuadroDialogoInformacion(String titulo, String mensaje){
+    public static boolean crearCuadroDialogoInformacion(String titulo, String mensaje){
+        boolean confirmacion = false;
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();
+        confirmacion = true;
+        return confirmacion;
     }
 
 

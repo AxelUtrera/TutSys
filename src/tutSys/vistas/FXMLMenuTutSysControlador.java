@@ -11,8 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tutSys.modelo.pojo.TutorAcademico;
 
@@ -54,12 +56,13 @@ public class FXMLMenuTutSysControlador implements Initializable {
     @FXML
     public void invocarRegistroProblematicaAcademica(ActionEvent actionEvent) {
         try{
-            Stage escenarioPrincipal = (Stage) labelNombreUsuario.getScene().getWindow();
-            Scene registroProblematicaAcademica = new Scene(FXMLLoader.load(getClass().getResource("RegistroProblematicaAcademicaVista.fxml")));
-            escenarioPrincipal.setScene(registroProblematicaAcademica);
-            escenarioPrincipal.setTitle("TutSys - Registrar Problematica Académica");
-            escenarioPrincipal.show();
-
+            FXMLLoader cargador =  new FXMLLoader(getClass().getResource("RegistroProblematicaAcademicaVista.fxml"));
+            Parent root = cargador.load();
+            Scene escena = new Scene(root);
+            Stage escenario = new Stage();
+            escenario.setScene(escena);
+            escenario.initModality(Modality.APPLICATION_MODAL);
+            escenario.showAndWait();
         } catch (IOException excepcion){
             excepcion.printStackTrace();
         }

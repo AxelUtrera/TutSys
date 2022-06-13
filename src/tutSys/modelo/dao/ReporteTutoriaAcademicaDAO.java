@@ -10,6 +10,7 @@ package tutSys.modelo.dao;
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.ReporteTutoriaAcademica;
 import tutSys.modelo.pojo.TutorAcademico;
+import tutSys.utilidades.CuadroDialogo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,9 +46,12 @@ public class ReporteTutoriaAcademicaDAO {
                 }
             }catch (SQLException ex){
                 ex.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexion con BD",
+                        "No se ha podido establecer conexión con la base de datos, inténtelo más tarde");
             }
         }
 
         return listaReportesRecuperados;
     }
+
 }

@@ -16,18 +16,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tutSys.modelo.dao.ExperienciaEducativaDAO;
+import tutSys.modelo.dao.ProblematicaAcademicaDAO;
 import tutSys.modelo.dao.ProfesorDAO;
 import tutSys.modelo.dao.ReporteTutoriaAcademicaDAO;
-import tutSys.modelo.pojo.ExperienciaEducativa;
-import tutSys.modelo.pojo.Profesor;
-import tutSys.modelo.pojo.ReporteTutoriaAcademica;
-import tutSys.modelo.pojo.TutorAcademico;
+import tutSys.modelo.pojo.*;
+import tutSys.utilidades.CuadroDialogo;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -82,7 +82,26 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
     @FXML
     void clicRegistrar(ActionEvent event) {
-        validarCampos();
+
+        if(validarCampos()){
+            //Recuperacion de profesor para obtener su id y asi recuperar el id de la Experiencia Educativa relacionada.
+            Profesor profesorRecuperado = ProfesorDAO.recuperarProfesor(comboBoxProfesor.getValue());
+            ExperienciaEducativa experienciaEducativaRecuperada = ExperienciaEducativaDAO.recuperarExperienciaEducativa(
+                    profesorRecuperado.getIdProfesor(), comboBoxExperienciaEducativa.getValue());
+
+            ProblematicaAcademica problematicaAcademica = new ProblematicaAcademica();
+            problematicaAcademica.setNumeroResportes(Integer.valueOf(textFieldNumeroReportes.getText()));
+            problematicaAcademica.setDescripcion(textAreaDescripcion.getText());
+            problematicaAcademica.setIdReporteTutoria(obtenerIdReporteTutoria(comboBoxTutorias.getValue()));
+            problematicaAcademica.setIdExperienciaEducativa(experienciaEducativaRecuperada.getIdExperienciaEducativa());
+
+            ProblematicaAcademicaDAO.agregarProblematicaAcademica(problematicaAcademica);
+            if(CuadroDialogo.crearCuadroDialogoInformacion("Guardado exitoso!", "¡Problematica academica registrada con éxito!")){
+                Stage escenario = (Stage) textFieldNumeroReportes.getScene().getWindow();
+                escenario.close();
+            };
+
+        }
     }
 
     @Override
@@ -99,13 +118,14 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
             ObservableList<String> sesionesTutoria = FXCollections.observableArrayList();
 
             for(ReporteTutoriaAcademica sesion : sesionesRecuperadas){
-                sesionesTutoria.add("Sesion "+String.valueOf(sesion.getNumeroSesionTutoria()) + "  " + sesion.getIdPeriodoEscolar());
+                sesionesTutoria.add("ID: "+String.valueOf(sesion.getIdReporteTutoriaAcademica()) +
+                        " Sesion "+String.valueOf(sesion.getNumeroSesionTutoria())
+                        + "  " + sesion.getIdPeriodoEscolar());
             }
             comboBoxTutorias.setItems(sesionesTutoria);
         }else{
             System.out.println("El tutor se encuentra vacio");
         }
-
     }
 
     public void llenarComboboxExperienciasEducativas() {
@@ -151,6 +171,11 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
         Date fechaHoy = new Date();
         labelFechaHoy.setText("Fecha de hoy: " + new SimpleDateFormat("dd/MM/yyyy").format(fechaHoy));
         return labelFechaHoy;
+    }
+
+    public int obtenerIdReporteTutoria(String cadenaTexto){
+        int subcadena = Integer.parseInt(cadenaTexto.substring(4,5));
+        return subcadena;
     }
 
     public boolean validarCampos() {

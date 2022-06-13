@@ -6,6 +6,10 @@ public class ExperienciaEducativa {
     private String nombre;
     private String nrc;
     private String programaEducativo;
+    private int idProfesor;
+    private int idPeriodoEscolar;
+    private int idProgramaEducativo;
+
 
     public ExperienciaEducativa(){}
 
@@ -47,5 +51,29 @@ public class ExperienciaEducativa {
 
     public void setProgramaEducativo(String programaEducativo) {
         this.programaEducativo = programaEducativo;
+    }
+
+    public int getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(int idProfesor) {
+        this.idProfesor = idProfesor;
+    }
+
+    public int getIdPeriodoEscolar() {
+        return idPeriodoEscolar;
+    }
+
+    public void setIdPeriodoEscolar(int idPeriodoEscolar) {
+        this.idPeriodoEscolar = idPeriodoEscolar;
+    }
+
+    public int getIdProgramaEducativo() {
+        return idProgramaEducativo;
+    }
+
+    public void setIdProgramaEducativo(int idProgramaEducativo) {
+        this.idProgramaEducativo = idProgramaEducativo;
     }
 }

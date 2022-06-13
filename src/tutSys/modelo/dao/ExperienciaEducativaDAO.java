@@ -44,4 +44,31 @@ public class ExperienciaEducativaDAO {
         }
         return listaExperienciasEducativas;
     }
+
+    public static ExperienciaEducativa recuperarExperienciaEducativa(int idProfesor, String experienciaEducativa){
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        String consulta =  "SELECT * from experienciaeducativa where experienciaeducativa.idProfesor = ? and experienciaeducativa.nombre = ?";
+        ExperienciaEducativa experienciaEducativaRecuperada = new ExperienciaEducativa();
+        try{
+            PreparedStatement preparacionConsulta = conexionBD.prepareStatement(consulta);
+            preparacionConsulta.setInt(1, idProfesor);
+            preparacionConsulta.setString(2, experienciaEducativa);
+            ResultSet resultadoConsulta = preparacionConsulta.executeQuery();
+
+            if (resultadoConsulta.next()){
+                experienciaEducativaRecuperada.setIdExperienciaEducativa(resultadoConsulta.getInt("idExperienciaEducativa"));
+                experienciaEducativaRecuperada.setNombre(resultadoConsulta.getString("nombre"));
+                experienciaEducativaRecuperada.setNrc(resultadoConsulta.getString("NRC"));
+                experienciaEducativaRecuperada.setCreditos(resultadoConsulta.getInt("creditos"));
+                experienciaEducativaRecuperada.setIdProfesor(resultadoConsulta.getInt("idProfesor"));
+                experienciaEducativaRecuperada.setIdProgramaEducativo(resultadoConsulta.getInt("idProgramaEducativo"));
+                experienciaEducativaRecuperada.setIdPeriodoEscolar(resultadoConsulta.getInt("idPeriodoEscolar"));
+            }
+            conexionBD.close();
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return experienciaEducativaRecuperada;
+    }
 }

@@ -46,14 +46,17 @@ public class ProfesorDAO {
         if(conexionBD != null){
             String consulta = "SELECT * FROM profesor WHERE nombre = ?";
 
-            try{
+            try {
                 PreparedStatement preparacionConsulta = conexionBD.prepareStatement(consulta);
                 preparacionConsulta.setString(1, nombre);
                 ResultSet resultadoConsulta = preparacionConsulta.executeQuery();
-                profesorRecuperado.setNombre(resultadoConsulta.getString("nombre"));
-                profesorRecuperado.setCorreoElectronio(resultadoConsulta.getString("correoElectronico"));
-                profesorRecuperado.setNumeroEmpleado(resultadoConsulta.getString("numeroEmpleado"));
-                profesorRecuperado.setNumeroTelefono(resultadoConsulta.getString("numeroTelefono"));
+                if (resultadoConsulta.next()){
+                    profesorRecuperado.setIdProfesor(resultadoConsulta.getInt("idProfesor"));
+                    profesorRecuperado.setNombre(resultadoConsulta.getString("nombre"));
+                    profesorRecuperado.setCorreoElectronio(resultadoConsulta.getString("correoElectronico"));
+                    profesorRecuperado.setNumeroEmpleado(resultadoConsulta.getString("numeroEmpleado"));
+                    profesorRecuperado.setNumeroTelefono(resultadoConsulta.getString("numeroTelefono"));
+                }
                 conexionBD.close();
             }catch (SQLException ex){
                 ex.printStackTrace();
