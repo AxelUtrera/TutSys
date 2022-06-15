@@ -64,6 +64,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
             Scene escena = new Scene(root);
             Stage escenario = new Stage();
             escenario.setScene(escena);
+            escenario.setTitle("Registrar problematica academica");
             escenario.initModality(Modality.APPLICATION_MODAL);
             escenario.showAndWait();
         } catch (IOException excepcion){
@@ -74,11 +75,13 @@ public class FXMLMenuTutSysControlador implements Initializable {
     @FXML
     public void invocarConsultarProblematicasAcademicas(ActionEvent actionEvent) {
         try{
-            Stage escenarioPrincipal = (Stage) labelNombreUsuario.getScene().getWindow();
-            Scene consultaProblematicaAcademica = new Scene(FXMLLoader.load(getClass().getResource("ProblematicaAcademicaVista.fxml")));
-            escenarioPrincipal.setScene(consultaProblematicaAcademica);
-            escenarioPrincipal.setTitle("TutSys - Consultar Problematica Académica");
-            escenarioPrincipal.show();
+            FXMLLoader cargador =  new FXMLLoader(getClass().getResource("ProblematicaAcademicaVista.fxml"));
+            Parent root = cargador.load();
+            Scene escena = new Scene(root);
+            Stage escenario = new Stage();
+            escenario.setScene(escena);
+            escenario.initModality(Modality.APPLICATION_MODAL);
+            escenario.showAndWait();
         } catch (IOException excepcion){
             excepcion.printStackTrace();
         }
