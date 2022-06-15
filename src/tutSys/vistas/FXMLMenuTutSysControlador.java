@@ -43,6 +43,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
     @FXML
     public void invocarLlenarReporteTutoria(ActionEvent actionEvent) {
         try{
+            FXMLRegistroProblematicaAcademicaControlador.reporteExtendido = null;
             FXMLRegistroReporteTutoriaControlador.tutorAcademico = tutorAcademico;
             FXMLLoader cargador =  new FXMLLoader(getClass().getResource("RegistroReporteTutoriaVista.fxml"));
             Parent root = cargador.load();

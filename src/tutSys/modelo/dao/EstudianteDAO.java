@@ -34,7 +34,6 @@ public class EstudianteDAO {
             } catch (SQLException excepcion){
                 excepcion.printStackTrace();
             }
-
         }
         return estudiantesRecuperados;
     }
