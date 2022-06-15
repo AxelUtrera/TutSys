@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="457.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLProblematicaAcademicaControlador">
+<AnchorPane prefHeight="457.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLProblematicaAcademicaControlador">
    <children>
       <Label layoutX="45.0" layoutY="44.0" text="Consulta de problematicas academicas">
          <font>
@@ -23,10 +24,10 @@
       </Label>
       <TableView fx:id="tableViewProblematicas" layoutX="45.0" layoutY="138.0" prefHeight="254.0" prefWidth="734.0">
         <columns>
-          <TableColumn fx:id="tableColumnDescripcion" prefWidth="227.20000076293945" text="Descripción" />
-          <TableColumn fx:id="tableColumnNumeroReportes" prefWidth="109.5999755859375" text="No. De reportes" />
-            <TableColumn fx:id="tableColumnExperienciaEducativa" prefWidth="210.4000244140625" text="Experiencia Educativa" />
-            <TableColumn fx:id="tableColumnProfesor" prefWidth="184.80002441406248" text="Profesor" />
+          <TableColumn fx:id="tableColumnDescripcion" editable="false" prefWidth="227.20000076293945" sortable="false" text="Descripción" />
+          <TableColumn fx:id="tableColumnNumeroReportes" editable="false" prefWidth="109.5999755859375" sortable="false" text="No. De reportes" />
+            <TableColumn fx:id="tableColumnExperienciaEducativa" editable="false" prefWidth="210.4000244140625" sortable="false" text="Experiencia Educativa" />
+            <TableColumn fx:id="tableColumnProfesor" editable="false" prefWidth="184.80002441406248" sortable="false" text="Profesor" />
         </columns>
       </TableView>
       <Button layoutX="55.0" layoutY="405.0" mnemonicParsing="false" onAction="#clicSalir" prefHeight="26.0" prefWidth="101.0" text="Salir" />

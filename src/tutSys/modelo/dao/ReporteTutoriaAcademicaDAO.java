@@ -78,4 +78,24 @@ public class ReporteTutoriaAcademicaDAO {
         return registroExitoso;
     }
 
+    public static int obtenerReporteTutoriaUnico(int idTutorAcademico, int idTutoriaAcademica){
+       Connection conexionBD = ConexionBD.abrirConexionBD();
+       int idReporteTutoria = 0;
+       String consulta = "SELECT * FROM reportetutoriaacademica WHERE idTutorAcademico = ? AND idTutoriaAcademica = ?";
+       if(conexionBD != null){
+           try{
+               PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+               prepararConsulta.setInt(1, idTutorAcademico);
+               prepararConsulta.setInt(2, idTutoriaAcademica);
+               ResultSet resultadoConsulta = prepararConsulta.executeQuery();
+               if (resultadoConsulta.next()){
+                   idReporteTutoria = resultadoConsulta.getInt("idReporteTutoriaAcademica");
+               }
+           } catch (SQLException excepcion) {
+               excepcion.printStackTrace();
+           }
+       }
+       return idReporteTutoria;
+    }
+
 }

@@ -24,18 +24,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tutSys.modelo.dao.EstudianteDAO;
 import tutSys.modelo.dao.PeriodoEscolarDAO;
 import tutSys.modelo.dao.ReporteTutoriaAcademicaDAO;
 import tutSys.modelo.dao.TutoriaAcademicaDAO;
-import tutSys.modelo.pojo.Estudiante;
-import tutSys.modelo.pojo.PeriodoEscolar;
-import tutSys.modelo.pojo.TutorAcademico;
-import tutSys.modelo.pojo.TutoriaAcademica;
+import tutSys.modelo.pojo.*;
 import tutSys.utilidades.CuadroDialogo;
 
 public class FXMLRegistroReporteTutoriaControlador implements Initializable {
@@ -90,7 +89,8 @@ public class FXMLRegistroReporteTutoriaControlador implements Initializable {
         }
         botonPulsado = CuadroDialogo.crearCuadroDialogoConfirmacion("Confirmación", "¿Desea registrar alguna problemática académica?");
         if(botonPulsado.get() == ButtonType.OK){
-            System.out.println("Extiende a registrar problematica");
+            enviarDatosReporte();
+            invocarRegistroProblematica();
         } else {
             cerrarVentana();
         }
@@ -223,5 +223,32 @@ public class FXMLRegistroReporteTutoriaControlador implements Initializable {
             }
         }
         return registroExitoso;
+    }
+
+    private void enviarDatosReporte(){
+        int idTutorAcademico = tutorAcademico.getIdTutorAcademico();
+        int idTutoriaAcademica = comboBoxTutoriaAcademica.getValue().getIdTutoriaAcademica();
+        int numeroTutoria = comboBoxTutoriaAcademica.getValue().getNumeroTutoria();
+        int idReporteExtendido = ReporteTutoriaAcademicaDAO.obtenerReporteTutoriaUnico(idTutorAcademico, idTutoriaAcademica);
+        ReporteTutoriaAcademica reporteExtendido = new ReporteTutoriaAcademica();
+
+        reporteExtendido.setIdReporteTutoriaAcademica(idReporteExtendido);
+        reporteExtendido.setNumeroSesionTutoria(numeroTutoria);
+        reporteExtendido.setIdPeriodoEscolar(periodoActual.getId());
+
+        System.out.println(reporteExtendido.getIdReporteTutoriaAcademica());
+        FXMLRegistroProblematicaAcademicaControlador.reporteExtendido = reporteExtendido;
+    }
+
+    private void invocarRegistroProblematica(){
+        try {
+            Stage escenarioPrincipal = (Stage) labelFecha.getScene().getWindow();
+            Scene menuTutSys = new Scene(FXMLLoader.load(getClass().getResource("RegistroProblematicaAcademicaVista.fxml")));
+            escenarioPrincipal.setScene(menuTutSys);
+            escenarioPrincipal.setTitle("TutSys - Registro problematica académica");
+            escenarioPrincipal.show();
+        } catch (IOException excepcion){
+            excepcion.printStackTrace();
+        }
     }
 }

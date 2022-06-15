@@ -19,10 +19,11 @@ import java.sql.SQLException;
 public class TutorAcademicoDAO {
     public static TutorAcademico recuperarTutorAcademico(String usuario, String contrasenia){
         Connection conexionBD = ConexionBD.abrirConexionBD();
+        String consulta = "SELECT * FROM tutoracademico WHERE usuario = ? AND contrasenia = ?";
         TutorAcademico tutorRecuperado = new TutorAcademico();
+
         if(conexionBD != null){
             try {
-                String consulta = "SELECT * FROM tutoracademico WHERE usuario = ? AND contrasenia = ?";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 prepararConsulta.setString(1, usuario);
                 prepararConsulta.setString(2, contrasenia);
@@ -30,15 +31,19 @@ public class TutorAcademicoDAO {
                 if(resultadoConsulta.next()){
                     tutorRecuperado.setIdTutorAcademico(resultadoConsulta.getInt("idTutorAcademico"));
                     tutorRecuperado.setNombre(resultadoConsulta.getString("nombre"));
-                }else {
-                    tutorRecuperado = null;
+                    tutorRecuperado.setUsuario(resultadoConsulta.getString("usuario"));
+                    tutorRecuperado.setContrasenia(resultadoConsulta.getString("contrasenia"));
+                    System.out.println(tutorRecuperado.getUsuario());
+                } else {
+                    tutorRecuperado.setUsuario("");
+                    tutorRecuperado.setContrasenia("");
                 }
                 conexionBD.close();
             } catch (SQLException excepcion){
                 excepcion.printStackTrace();
-                CuadroDialogo.crearCuadroDialogoError("Sin conexion con BD",
-                        "No se ha podido establecer conexión con la base de datos, inténtelo más tarde");
             }
+        } else {
+            tutorRecuperado = null;
         }
         return tutorRecuperado;
     }

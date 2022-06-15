@@ -43,6 +43,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
     @FXML
     public void invocarLlenarReporteTutoria(ActionEvent actionEvent) {
         try{
+            FXMLRegistroProblematicaAcademicaControlador.reporteExtendido = null;
             FXMLRegistroReporteTutoriaControlador.tutorAcademico = tutorAcademico;
             FXMLLoader cargador =  new FXMLLoader(getClass().getResource("RegistroReporteTutoriaVista.fxml"));
             Parent root = cargador.load();
@@ -75,6 +76,10 @@ public class FXMLMenuTutSysControlador implements Initializable {
     @FXML
     public void invocarConsultarProblematicasAcademicas(ActionEvent actionEvent) {
         try{
+<<<<<<< HEAD
+=======
+            FXMLProblematicaAcademicaControlador.tutorAcademico = tutorAcademico;
+>>>>>>> solucionConflictos
             FXMLLoader cargador =  new FXMLLoader(getClass().getResource("ProblematicaAcademicaVista.fxml"));
             Parent root = cargador.load();
             Scene escena = new Scene(root);

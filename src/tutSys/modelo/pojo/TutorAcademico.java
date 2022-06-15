@@ -6,16 +6,20 @@ public class TutorAcademico {
     private String nombre;
     private String programaEducativo;
     private String telefono;
+    private String usuario;
+    private String contrasenia;
 
     public TutorAcademico() {
     }
 
-    public TutorAcademico(int idTutorAcademico, String correoElectronico, String nombre, String programaEducativo, String telefono) {
+    public TutorAcademico(int idTutorAcademico, String correoElectronico, String nombre, String programaEducativo, String telefono, String usuario, String contrasenia) {
         this.idTutorAcademico = idTutorAcademico;
         this.correoElectronico = correoElectronico;
         this.nombre = nombre;
         this.programaEducativo = programaEducativo;
         this.telefono = telefono;
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
     }
 
     public int getIdTutorAcademico() {
@@ -56,5 +60,21 @@ public class TutorAcademico {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 }

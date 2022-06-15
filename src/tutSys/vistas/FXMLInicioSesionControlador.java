@@ -31,7 +31,6 @@ public class FXMLInicioSesionControlador {
     @FXML
     private TextField textFieldUsuario;
 
-
     @FXML
     void clicIniciarSesion(ActionEvent event) {
         if(validarCamposTexto()){
@@ -40,14 +39,18 @@ public class FXMLInicioSesionControlador {
 
             TutorAcademico usuarioSesion = TutorAcademicoDAO.recuperarTutorAcademico(usuario, contrasenia);
 
-            if(usuarioSesion != null){
+            if(usuarioSesion == null){
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexion con la base de datos," +
+                        " intentelo más tarde");
+                cerrarVentana();
+            } else if(!usuarioSesion.getUsuario().equals(usuario) && !usuarioSesion.getContrasenia().equals(contrasenia)){
+                CuadroDialogo.crearCuadroDialogoAdvetencia("Usuario no encontrado", "El usuario o la contraseña ingresada no existen");
+            } else if(usuarioSesion.getUsuario().equals(usuario) && usuarioSesion.getContrasenia().equals(contrasenia)){
                 CuadroDialogo.crearCuadroDialogoInformacion("Bienvenida/o!", "Bienvenida/o " + usuarioSesion.getNombre());
                 //Se inicializa la variable estatica para tener acceso a los datos desde la otra ventana.
                 FXMLMenuTutSysControlador.tutorAcademico = usuarioSesion;
                 FXMLRegistroProblematicaAcademicaControlador.tutorAcademico = usuarioSesion;
                 invocarMenuPrincipal();
-            } else {
-                CuadroDialogo.crearCuadroDialogoError("Usuario no encontrado", "El usuario o la contraseña ingresada no existen");
             }
         }
     }
@@ -81,4 +84,8 @@ public class FXMLInicioSesionControlador {
         }
     }
 
+    private void cerrarVentana(){
+        Stage ventanaActual = (Stage) textFieldUsuario.getScene().getWindow();
+        ventanaActual.close();
+    }
 }

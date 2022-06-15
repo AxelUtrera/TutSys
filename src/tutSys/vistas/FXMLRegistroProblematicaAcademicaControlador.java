@@ -72,11 +72,11 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
     @FXML
     private Label labelErrorProfesor;
+    public static ReporteTutoriaAcademica reporteExtendido;
 
     @FXML
     void clicCancelar(ActionEvent event) {
-        Stage escenario = (Stage) comboBoxProfesor.getScene().getWindow();
-        escenario.close();
+        cerrarVentana();
     }
 
     @FXML
@@ -96,8 +96,7 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
             ProblematicaAcademicaDAO.agregarProblematicaAcademica(problematicaAcademica);
             if(CuadroDialogo.crearCuadroDialogoInformacion("Guardado exitoso!", "¡Problematica academica registrada con éxito!")){
-                Stage escenario = (Stage) textFieldNumeroReportes.getScene().getWindow();
-                escenario.close();
+                cerrarVentana();
             };
 
         }
@@ -112,9 +111,16 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     }
 
     public void llenarComboboxSesionTutorias() {
-        if (tutorAcademico != null){
+        ObservableList<String> sesionesTutoria = FXCollections.observableArrayList();
+        if(reporteExtendido != null){
+            sesionesTutoria.add("ID: "+String.valueOf(reporteExtendido.getIdReporteTutoriaAcademica()) +
+                    " Sesion "+String.valueOf(reporteExtendido.getNumeroSesionTutoria())
+                    + "  " + reporteExtendido.getIdPeriodoEscolar());
+            comboBoxTutorias.setItems(sesionesTutoria);
+            comboBoxTutorias.getSelectionModel().select(0);
+
+        } else if (tutorAcademico != null){
             ArrayList<ReporteTutoriaAcademica> sesionesRecuperadas = ReporteTutoriaAcademicaDAO.consultarReportesTutoriaPorTutor(tutorAcademico);
-            ObservableList<String> sesionesTutoria = FXCollections.observableArrayList();
 
             for(ReporteTutoriaAcademica sesion : sesionesRecuperadas){
                 sesionesTutoria.add("ID: "+String.valueOf(sesion.getIdReporteTutoriaAcademica()) +
@@ -125,6 +131,7 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
         }else{
             System.out.println("El tutor se encuentra vacio");
         }
+
     }
 
     public void llenarComboboxExperienciasEducativas() {
@@ -173,7 +180,8 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     }
 
     public int obtenerIdReporteTutoria(String cadenaTexto){
-        int subcadena = Integer.parseInt(cadenaTexto.substring(4,5));
+        int subcadena = Integer.parseInt(cadenaTexto.substring(4,6));
+        System.out.println(subcadena);
         return subcadena;
     }
 
@@ -222,6 +230,11 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
         return esValido;
     }
 
+    private void cerrarVentana(){
+        reporteExtendido = null;
+        Stage escenario = (Stage) comboBoxProfesor.getScene().getWindow();
+        escenario.close();
+    }
 
 
 }
