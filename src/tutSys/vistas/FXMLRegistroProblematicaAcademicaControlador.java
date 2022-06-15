@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 public class FXMLRegistroProblematicaAcademicaControlador implements Initializable {
 
     public static TutorAcademico tutorAcademico;
+    public static ReporteTutoriaAcademica reporteExtendido;
 
     @FXML
     private ComboBox<String> comboBoxExperienciaEducativa;
@@ -72,7 +73,7 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
     @FXML
     private Label labelErrorProfesor;
-    public static ReporteTutoriaAcademica reporteExtendido;
+
 
     @FXML
     void clicCancelar(ActionEvent event) {
@@ -128,8 +129,6 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
                         + "  " + sesion.getIdPeriodoEscolar());
             }
             comboBoxTutorias.setItems(sesionesTutoria);
-        }else{
-            System.out.println("El tutor se encuentra vacio");
         }
 
     }
@@ -181,7 +180,6 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
     public int obtenerIdReporteTutoria(String cadenaTexto){
         int subcadena = Integer.parseInt(cadenaTexto.substring(4,6));
-        System.out.println(subcadena);
         return subcadena;
     }
 

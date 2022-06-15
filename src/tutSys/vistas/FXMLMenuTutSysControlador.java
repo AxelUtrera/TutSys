@@ -1,11 +1,11 @@
-/*
+package tutSys.vistas;
+
+/**
  *Autor: Daniel Eduardo Anota Paxtian
  *Fecha de creacion: 10/06/2022
  *Ultima modificacion: 10/06/2022
  *Nombre modificador: Daniel Eduardo Anota Paxtian
  */
-
-package tutSys.vistas;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import tutSys.TutSys;
 import tutSys.modelo.pojo.TutorAcademico;
 
 import java.io.IOException;
@@ -76,10 +75,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
     @FXML
     public void invocarConsultarProblematicasAcademicas(ActionEvent actionEvent) {
         try{
-<<<<<<< HEAD
-=======
             FXMLProblematicaAcademicaControlador.tutorAcademico = tutorAcademico;
->>>>>>> solucionConflictos
             FXMLLoader cargador =  new FXMLLoader(getClass().getResource("ProblematicaAcademicaVista.fxml"));
             Parent root = cargador.load();
             Scene escena = new Scene(root);

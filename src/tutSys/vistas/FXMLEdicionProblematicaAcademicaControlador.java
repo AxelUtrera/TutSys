@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 public class FXMLEdicionProblematicaAcademicaControlador implements Initializable {
 
     public static TutorAcademico tutorAcademico;
-    public static ProblematicaAcademica problematicaAEditar;
+    public static ProblematicaAcademicaAux problematicaAEditar;
 
     @FXML
     private ComboBox<String> comboBoxExperienciaEducativa;
@@ -106,9 +106,14 @@ public class FXMLEdicionProblematicaAcademicaControlador implements Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        comboBoxTutorias.setValue("Esto es un set value");
-        //textAreaDescripcion.setText(problematicaAEditar.getDescripcion());
-        //textFieldNumeroReportes.setText(String.valueOf(problematicaAEditar.getNumeroResportes()));
+        comboBoxTutorias.setValue("ID: "+ problematicaAEditar.getIdProblematicaAcademica()+
+                                  "Sesion" +
+                                  " "
+        );
+        textAreaDescripcion.setText(problematicaAEditar.getDescripcion());
+        textFieldNumeroReportes.setText(String.valueOf(problematicaAEditar.getNumeroReportes()));
+        comboBoxExperienciaEducativa.setValue(problematicaAEditar.getNombreExperienciaEducativa());
+        comboBoxProfesor.setValue(problematicaAEditar.getNombreProfesor());
         llenarComboboxSesionTutorias();
         llenarComboboxExperienciasEducativas();
         obsevarCambiosComboboxExperienciaEducativa();

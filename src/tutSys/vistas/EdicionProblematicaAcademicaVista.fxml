@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="551.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tutSys.vistas.FXMLEdicionProblematicaAcademicaControlador">
     <children>
-        <Label layoutX="50.0" layoutY="22.0" text="Registro de problematica academica">
+        <Label layoutX="50.0" layoutY="22.0" text="Modificar problematica academica">
             <font>
                 <Font name="Roboto Medium" size="18.0" />
             </font>
@@ -47,7 +47,7 @@
         <ComboBox fx:id="comboBoxExperienciaEducativa" layoutX="55.0" layoutY="461.0" prefHeight="26.0" prefWidth="251.0" />
         <ComboBox fx:id="comboBoxProfesor" layoutX="383.0" layoutY="461.0" prefHeight="26.0" prefWidth="313.0" />
         <TextField fx:id="textFieldNumeroReportes" layoutX="55.0" layoutY="397.0" prefHeight="26.0" prefWidth="251.0" />
-        <Button layoutX="457.0" layoutY="510.0" mnemonicParsing="false" onAction="#clicRegistrar" prefHeight="26.0" prefWidth="110.0" text="Registrar" />
+        <Button layoutX="457.0" layoutY="510.0" mnemonicParsing="false" onAction="#clicRegistrar" prefHeight="26.0" prefWidth="110.0" text="Actualizar" />
         <Button layoutX="606.0" layoutY="509.0" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="26.0" prefWidth="104.0" text="Cancelar" />
         <Label fx:id="labelErrorProfesor" layoutX="383.0" layoutY="489.0" text="Realice la seleccion de un profesor" textFill="RED" visible="false">
             <font>

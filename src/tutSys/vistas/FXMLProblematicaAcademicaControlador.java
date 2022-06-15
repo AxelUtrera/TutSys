@@ -13,24 +13,23 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-<<<<<<< HEAD
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import tutSys.modelo.pojo.ProblematicaAcademica;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-=======
+
 import javafx.scene.control.cell.PropertyValueFactory;
 import tutSys.modelo.dao.ProblematicaAcademicaDAO;
 import tutSys.modelo.pojo.ProblematicaAcademicaAux;
 import tutSys.modelo.pojo.TutorAcademico;
+import tutSys.utilidades.CuadroDialogo;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
->>>>>>> solucionConflictos
 
 /**
  *
@@ -78,23 +77,31 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
 
     @FXML
     void clicEliminar(ActionEvent event) {
+        if (tableViewProblematicas.getSelectionModel().isEmpty()){
 
+        }else{
+            CuadroDialogo.crearCuadroDialogoError("Sin campo seleccionado", "Seleccione una problematica academica para continuar con su edicion");
+        }
     }
 
     @FXML
     void clicModificar(ActionEvent event) {
-        //FXMLEdicionProblematicaAcademicaControlador.problematicaAEditar = tableViewProblematicas.getSelectionModel().getSelectedItem();
-        try{
-            FXMLLoader cargador =  new FXMLLoader(getClass().getResource("EdicionProblematicaAcademicaVista.fxml"));
-            Parent root = cargador.load();
-            Scene escena = new Scene(root);
-            Stage escenario = new Stage();
-            escenario.setScene(escena);
-            escenario.setTitle("Edicion de problematica academica");
-            escenario.initModality(Modality.APPLICATION_MODAL);
-            escenario.showAndWait();
-        } catch (IOException excepcion){
-            excepcion.printStackTrace();
+        if (!tableViewProblematicas.getSelectionModel().isEmpty()) {
+            FXMLEdicionProblematicaAcademicaControlador.problematicaAEditar = tableViewProblematicas.getSelectionModel().getSelectedItem();
+            try {
+                FXMLLoader cargador = new FXMLLoader(getClass().getResource("EdicionProblematicaAcademicaVista.fxml"));
+                Parent root = cargador.load();
+                Scene escena = new Scene(root);
+                Stage escenario = new Stage();
+                escenario.setScene(escena);
+                escenario.setTitle("Edicion de problematica academica");
+                escenario.initModality(Modality.APPLICATION_MODAL);
+                escenario.showAndWait();
+            } catch (IOException excepcion) {
+                excepcion.printStackTrace();
+            }
+        }else{
+            CuadroDialogo.crearCuadroDialogoError("Sin campo seleccionado", "Seleccione una problematica academica para continuar con su edicion");
         }
     }
 
@@ -107,8 +114,12 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        llenarTablaProblematica();
+        colocarFechaActual();
+        configurarComboBoxBusqueda();
+    }
 
-    private void llenarTablaProblematica() {
+    private void llenarTablaProblematica () {
         ArrayList<ProblematicaAcademicaAux> problematicasObtenidas = ProblematicaAcademicaDAO.obtenerProblematicasAcademicas(tutorAcademico.getIdTutorAcademico());
         ObservableList<ProblematicaAcademicaAux> infoProblematica = FXCollections.observableArrayList();
         tableColumnDescripcion.setCellValueFactory(new PropertyValueFactory("descripcion"));
@@ -124,10 +135,9 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
         labelFechaHoy.setText("Hoy es: " + new SimpleDateFormat("dd/MM/yyyy").format(fechaActual));
     }
 
-    private void configurarComboBoxBusqueda(){
+    private void configurarComboBoxBusqueda () {
         ObservableList<String> tiposBusqueda = FXCollections.observableArrayList();
         tiposBusqueda.addAll("Buscar por: EE", "Buscar por: Profesor");
         comboBoxBusqueda.setItems(tiposBusqueda);
     }
-
 }
