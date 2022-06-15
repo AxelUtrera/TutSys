@@ -49,6 +49,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
             Parent root = cargador.load();
             Scene escena = new Scene(root);
             Stage escenario = new Stage();
+            escenario.setTitle("TutSys - Llenar reporte de tutoría");
             escenario.setScene(escena);
             escenario.initModality(Modality.APPLICATION_MODAL);
             escenario.showAndWait();
@@ -64,6 +65,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
             Parent root = cargador.load();
             Scene escena = new Scene(root);
             Stage escenario = new Stage();
+            escenario.setTitle("TutSys - Registrar problematica academica");
             escenario.setScene(escena);
             escenario.initModality(Modality.APPLICATION_MODAL);
             escenario.showAndWait();
@@ -80,6 +82,7 @@ public class FXMLMenuTutSysControlador implements Initializable {
             Parent root = cargador.load();
             Scene escena = new Scene(root);
             Stage escenario = new Stage();
+            escenario.setTitle("TutSys - Consultar problematicas academicas");
             escenario.setScene(escena);
             escenario.initModality(Modality.APPLICATION_MODAL);
             escenario.showAndWait();
