@@ -2,12 +2,12 @@ package tutSys.vistas;
 
 
 /**
-*
-* fecha de creacion: 9 / 06 / 2022
-* fecha de moficacion: 12 / 06 /  2022
- * autor: Axel Utrera
-*
-* */
+ *
+ * fecha de creacion: 9 / 06 / 2022
+ * fecha de moficacion: 12 / 06 /  2022
+ * @autor: Axel Utrera
+ *
+ * */
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -36,10 +36,10 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FXMLRegistroProblematicaAcademicaControlador implements Initializable {
+public class FXMLEdicionProblematicaAcademicaControlador implements Initializable {
 
     public static TutorAcademico tutorAcademico;
-    public static ReporteTutoriaAcademica reporteExtendido;
+    public static ProblematicaAcademicaAux problematicaAEditar;
 
     @FXML
     private ComboBox<String> comboBoxExperienciaEducativa;
@@ -74,10 +74,10 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     @FXML
     private Label labelErrorProfesor;
 
-
     @FXML
     void clicCancelar(ActionEvent event) {
-        cerrarVentana();
+        Stage escenario = (Stage) comboBoxProfesor.getScene().getWindow();
+        escenario.close();
     }
 
     @FXML
@@ -97,7 +97,8 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
             ProblematicaAcademicaDAO.agregarProblematicaAcademica(problematicaAcademica);
             if(CuadroDialogo.crearCuadroDialogoInformacion("Guardado exitoso!", "¡Problematica academica registrada con éxito!")){
-                cerrarVentana();
+                Stage escenario = (Stage) textFieldNumeroReportes.getScene().getWindow();
+                escenario.close();
             };
 
         }
@@ -105,6 +106,14 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        comboBoxTutorias.setValue("ID: "+ problematicaAEditar.getIdProblematicaAcademica()+
+                                  "Sesion" +
+                                  " "
+        );
+        textAreaDescripcion.setText(problematicaAEditar.getDescripcion());
+        textFieldNumeroReportes.setText(String.valueOf(problematicaAEditar.getNumeroReportes()));
+        comboBoxExperienciaEducativa.setValue(problematicaAEditar.getNombreExperienciaEducativa());
+        comboBoxProfesor.setValue(problematicaAEditar.getNombreProfesor());
         llenarComboboxSesionTutorias();
         llenarComboboxExperienciasEducativas();
         obsevarCambiosComboboxExperienciaEducativa();
@@ -112,16 +121,8 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     }
 
     public void llenarComboboxSesionTutorias() {
-        ObservableList<String> sesionesTutoria = FXCollections.observableArrayList();
-        if(reporteExtendido != null){
-            sesionesTutoria.add("ID: "+String.valueOf(reporteExtendido.getIdReporteTutoriaAcademica()) +
-                    " Sesion "+String.valueOf(reporteExtendido.getNumeroSesionTutoria())
-                    + "  " + reporteExtendido.getIdPeriodoEscolar());
-            comboBoxTutorias.setItems(sesionesTutoria);
-            comboBoxTutorias.getSelectionModel().select(0);
-
-        } else if (tutorAcademico != null){
             ArrayList<ReporteTutoriaAcademica> sesionesRecuperadas = ReporteTutoriaAcademicaDAO.consultarReportesTutoriaPorTutor(tutorAcademico);
+            ObservableList<String> sesionesTutoria = FXCollections.observableArrayList();
 
             for(ReporteTutoriaAcademica sesion : sesionesRecuperadas){
                 sesionesTutoria.add("ID: "+String.valueOf(sesion.getIdReporteTutoriaAcademica()) +
@@ -129,8 +130,6 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
                         + "  " + sesion.getIdPeriodoEscolar());
             }
             comboBoxTutorias.setItems(sesionesTutoria);
-        }
-
     }
 
     public void llenarComboboxExperienciasEducativas() {
@@ -179,9 +178,10 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     }
 
     public int obtenerIdReporteTutoria(String cadenaTexto){
-        int subcadena = Integer.parseInt(cadenaTexto.substring(4,6));
+        int subcadena = Integer.parseInt(cadenaTexto.substring(4,5));
         return subcadena;
     }
+
 
     public boolean validarCampos() {
 
@@ -228,11 +228,6 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
         return esValido;
     }
 
-    private void cerrarVentana(){
-        reporteExtendido = null;
-        Stage escenario = (Stage) comboBoxProfesor.getScene().getWindow();
-        escenario.close();
-    }
 
 
 }

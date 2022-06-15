@@ -33,7 +33,6 @@ public class TutorAcademicoDAO {
                     tutorRecuperado.setNombre(resultadoConsulta.getString("nombre"));
                     tutorRecuperado.setUsuario(resultadoConsulta.getString("usuario"));
                     tutorRecuperado.setContrasenia(resultadoConsulta.getString("contrasenia"));
-                    System.out.println(tutorRecuperado.getUsuario());
                 } else {
                     tutorRecuperado.setUsuario("");
                     tutorRecuperado.setContrasenia("");
