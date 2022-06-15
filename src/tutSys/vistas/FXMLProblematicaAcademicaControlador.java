@@ -64,7 +64,7 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
 
     @FXML
     private TableView<ProblematicaAcademicaAux> tableViewProblematicas;
-    
+
     @FXML
     private TextField textFieldBusqueda;
 
@@ -77,9 +77,9 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
         String tipoBusqueda = comboBoxBusqueda.getValue();
 
         if(tipoBusqueda.equals("Buscar por: EE")){
-            //buscarProblematicasPorEE(terminoBusqueda);
+            buscarProblematicasPorEE(terminoBusqueda);
         } else if(tipoBusqueda.equals("Buscar por: Profesor")){
-           //buscarProblematicasPorProfesor(terminoBusqueda);
+            buscarProblematicasPorProfesor(terminoBusqueda);
         }
     }
 
@@ -117,7 +117,7 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
     void clicSalir(ActionEvent event) {
         Optional<ButtonType> confimarSalida = CuadroDialogo.crearCuadroDialogoConfirmacion("Confirmar salida", "¿Desea salir?");
         if(confimarSalida.get() == ButtonType.OK){
-            //cerrarVentana();
+            cerrarVentana();
         }
 
     }
@@ -150,6 +150,41 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
         tiposBusqueda.addAll("Buscar por: EE", "Buscar por: Profesor");
         comboBoxBusqueda.setItems(tiposBusqueda);
         comboBoxBusqueda.getSelectionModel().select(0);
+    }
+
+    private void cerrarVentana(){
+        Stage ventanaActual = (Stage) labelFechaHoy.getScene().getWindow();
+        ventanaActual.close();
+    }
+
+    private void buscarProblematicasPorEE(String terminoBusqueda) {
+        if(infoProblematica.size() > 0){
+            FilteredList<ProblematicaAcademicaAux> listaFiltrada = new FilteredList<>(infoProblematica, p -> true);
+            listaFiltrada.setPredicate(busqueda ->{
+                if(busqueda.getNombreExperienciaEducativa().toLowerCase().contains(terminoBusqueda)){
+                    return true;
+                }
+                return false;
+            });
+            SortedList<ProblematicaAcademicaAux> ordenamientoProblematica = new SortedList<>(listaFiltrada);
+            ordenamientoProblematica.comparatorProperty().bind(tableViewProblematicas.comparatorProperty());
+            tableViewProblematicas.setItems(ordenamientoProblematica);
+        }
+    }
+
+    private void buscarProblematicasPorProfesor(String terminoBusqueda) {
+        if(infoProblematica.size() > 0){
+            FilteredList<ProblematicaAcademicaAux> listaFiltrada = new FilteredList<>(infoProblematica, p -> true);
+            listaFiltrada.setPredicate(busqueda ->{
+                if(busqueda.getNombreProfesor().toLowerCase().contains(terminoBusqueda)){
+                    return true;
+                }
+                return false;
+            });
+            SortedList<ProblematicaAcademicaAux> ordenamientoProblematica = new SortedList<>(listaFiltrada);
+            ordenamientoProblematica.comparatorProperty().bind(tableViewProblematicas.comparatorProperty());
+            tableViewProblematicas.setItems(ordenamientoProblematica);
+        }
     }
 }
 
