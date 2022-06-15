@@ -8,8 +8,10 @@ package tutSys.modelo.dao;
  * */
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.ProblematicaAcademica;
+import tutSys.modelo.pojo.ProblematicaAcademicaAux;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ProblematicaAcademicaDAO {
 
@@ -33,7 +35,36 @@ public class ProblematicaAcademicaDAO {
         return respuesta;
     }
 
-    //public static ProblematicaAcademica consultarProblematicaAcademica(String idProblematica){
+    public static ArrayList<ProblematicaAcademicaAux> obtenerProblematicasAcademicas(int idTutorAcademico){
+        ArrayList<ProblematicaAcademicaAux> problematicasRecuperadas = new ArrayList<>();
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        String consulta = "select reportetutoriaacademica.idReporteTutoriaAcademica, problematicaacademica.idProblematicaAcademica ,problematicaacademica.descripcion, problematicaacademica.numeroReportes,\n" +
+                " experienciaeducativa.idExperienciaEducativa, experienciaeducativa.nombre as nombreEE, profesor.idProfesor, profesor.nombre as nombreProf from reportetutoriaacademica inner join problematicaacademica on \n" +
+                " reportetutoriaacademica.idReporteTutoriaAcademica = problematicaacademica.idReporteTutoria and reportetutoriaacademica.idTutorAcademico = ? inner join experienciaeducativa on \n" +
+                " problematicaacademica.idExperienciaEducativa = experienciaeducativa.idExperienciaEducativa inner join profesor on experienciaeducativa.idProfesor = profesor.idProfesor;";
 
-    //}
+        if(conexionBD != null){
+            try{
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, idTutorAcademico);
+                ResultSet resultadoConsulta = prepararConsulta.executeQuery();
+                while(resultadoConsulta.next()){
+                    ProblematicaAcademicaAux problematicaRecuperada = new ProblematicaAcademicaAux();
+                    problematicaRecuperada.setIdReporteTutoriaAcademica(resultadoConsulta.getInt("idReporteTutoriaAcademica"));
+                    problematicaRecuperada.setIdProblematicaAcademica(resultadoConsulta.getInt("idProblematicaAcademica"));
+                    problematicaRecuperada.setDescripcion(resultadoConsulta.getString("descripcion"));
+                    problematicaRecuperada.setNumeroReportes(resultadoConsulta.getInt("numeroReportes"));
+                    problematicaRecuperada.setIdExperienciaEducativa(resultadoConsulta.getInt("idExperienciaEducativa"));
+                    problematicaRecuperada.setNombreExperienciaEducativa(resultadoConsulta.getString("nombreEE"));
+                    problematicaRecuperada.setIdProfesor(resultadoConsulta.getInt("idProfesor"));
+                    problematicaRecuperada.setNombreProfesor(resultadoConsulta.getString("nombreProf"));
+                    problematicasRecuperadas.add(problematicaRecuperada);
+                }
+                conexionBD.close();
+            } catch (SQLException excepcion){
+                excepcion.printStackTrace();
+            }
+        }
+        return problematicasRecuperadas;
+    }
 }
