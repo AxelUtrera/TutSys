@@ -1,16 +1,18 @@
 package tutSys.modelo.dao;
+
 /**
- *
- * fecha de creacion: 8 / 06 / 2022
- * Ultima modificacion: 10  / 06 / 2022
- * autor: Axel Utrera
- *
- * */
+ * Autor: Axel Utrera
+ * fecha de creacion: 08 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 import java.sql.*;
 import java.util.ArrayList;
 
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.Profesor;
+import tutSys.utilidades.CuadroDialogo;
 
 public class ProfesorDAO {
 
@@ -35,6 +37,8 @@ public class ProfesorDAO {
                 conexionBD.close();
             }catch (SQLException ex){
                 ex.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
             }
         }
         return listaProfesoresBD;
@@ -60,6 +64,8 @@ public class ProfesorDAO {
                 conexionBD.close();
             }catch (SQLException ex){
                 ex.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
             }
         }
         return profesorRecuperado;
@@ -89,6 +95,8 @@ public class ProfesorDAO {
                 conexionBD.close();
             }catch (SQLException ex){
                 ex.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
             }
         }
         return profesoresRecuperador;

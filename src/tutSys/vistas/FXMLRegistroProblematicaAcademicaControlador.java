@@ -1,13 +1,11 @@
 package tutSys.vistas;
 
-
 /**
-*
-* fecha de creacion: 9 / 06 / 2022
-* fecha de moficacion: 12 / 06 /  2022
- * autor: Axel Utrera
-*
-* */
+ *Autor: Axel Utrera
+ *Fecha de creacion: 09/06/2022
+ *Ultima modificacion: 13/06/2022
+ *Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

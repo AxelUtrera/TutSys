@@ -1,11 +1,11 @@
-/*
-*Autor: Daniel Eduardo Anota Paxtian
-*Fecha de creacion: 09/06/2022
-*Ultima modificacion: 09/06/2022
-*Nombre modificador: Daniel Eduardo Anota Paxtian
-*/
-
 package tutSys.vistas;
+
+/**
+ *Autor: Daniel Eduardo Anota Paxtian
+ *Fecha de creacion: 09/06/2022
+ *Ultima modificacion: 13/06/2022
+ *Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
 
 import java.io.IOException;
 import java.net.URL;

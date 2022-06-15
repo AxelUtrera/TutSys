@@ -1,9 +1,15 @@
 package tutSys.modelo.dao;
 
+/**
+ * Autor: Daniel Eduardo Anota Paxtian
+ * fecha de creacion: 13 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.PeriodoEscolar;
 import tutSys.utilidades.CuadroDialogo;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -33,10 +39,9 @@ public class PeriodoEscolarDAO {
                 }
             } catch (SQLException excepcion){
                 excepcion.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
             }
-        } else {
-            CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
-                    " con la base de datos, intentelo mas tarde");
         }
         return periodoActual;
     }

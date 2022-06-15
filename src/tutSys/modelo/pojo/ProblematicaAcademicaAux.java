@@ -1,5 +1,12 @@
 package tutSys.modelo.pojo;
 
+/**
+ * Autor: Daniel Eduardo Anota Paxtian
+ * fecha de creacion: 14 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 public class ProblematicaAcademicaAux {
     int idReporteTutoriaAcademica;
     int idProblematicaAcademica;

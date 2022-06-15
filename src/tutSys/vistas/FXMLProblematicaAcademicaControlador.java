@@ -1,5 +1,12 @@
 package tutSys.vistas;
 
+/**
+ * Autor: Axel Utrera
+ * fecha de creacion: 13 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,35 +19,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tutSys.modelo.dao.ProblematicaAcademicaDAO;
 import tutSys.modelo.pojo.ProblematicaAcademicaAux;
 import tutSys.modelo.pojo.TutorAcademico;
 import tutSys.utilidades.CuadroDialogo;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Optional;
-
-/**
- *
- * @author Axel Utrera
- * fecha de creacion: 13 / 06 /2022
- * Ultima modificacion: 13 / 06 / 2022
- */
-
 
 public class FXMLProblematicaAcademicaControlador implements Initializable {
 
@@ -85,10 +79,11 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
 
     @FXML
     void clicEliminar(ActionEvent event) {
-        if (tableViewProblematicas.getSelectionModel().isEmpty()){
-
+        if(!tableViewProblematicas.getSelectionModel().isEmpty()){
+            int idProblematica = tableViewProblematicas.getSelectionModel().getSelectedItem().getIdProblematicaAcademica();
+            eliminarProblematica(idProblematica);
         }else{
-            CuadroDialogo.crearCuadroDialogoError("Sin campo seleccionado", "Seleccione una problematica academica para continuar con su edicion");
+            CuadroDialogo.crearCuadroDialogoError("Sin campo seleccionado", "No se ha seleccionado ninguna problematica academica");
         }
     }
 
@@ -185,6 +180,27 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
             ordenamientoProblematica.comparatorProperty().bind(tableViewProblematicas.comparatorProperty());
             tableViewProblematicas.setItems(ordenamientoProblematica);
         }
+    }
+
+    private void eliminarProblematica(int idProblematica){
+        Optional<ButtonType> confirmarEliminacion = CuadroDialogo.crearCuadroDialogoConfirmacion("¿Eliminar problematica academica", "¿Desea" +
+                " eliminar la problematica academica seleccionada?");
+        if(confirmarEliminacion.get() == ButtonType.OK){
+            int respuestaEliminacion = ProblematicaAcademicaDAO.eliminarProblematicaAcademica(idProblematica);
+            if(respuestaEliminacion == 1){
+                CuadroDialogo.crearCuadroDialogoInformacion("Eliminacíon exitosa", "La problemática académica " +
+                        "se ha eliminado exitosamente");
+                actualizarTablaProblematicas();
+            }
+        }
+    }
+
+    private void actualizarTablaProblematicas(){
+        ArrayList<ProblematicaAcademicaAux> problematicasObtenidas = ProblematicaAcademicaDAO.obtenerProblematicasAcademicas(tutorAcademico.getIdTutorAcademico());
+        infoProblematica = FXCollections.observableArrayList();
+        infoProblematica.addAll(problematicasObtenidas);
+        tableViewProblematicas.setItems(infoProblematica);
+        textFieldBusqueda.setText("");
     }
 }
 

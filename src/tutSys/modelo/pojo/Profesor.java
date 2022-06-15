@@ -1,13 +1,10 @@
-
 package tutSys.modelo.pojo;
 
 /**
- *
  * Autor: Axel Utrera
  * Fecha de creacion: 17/05/2022
  * Ultima modificacion: 22/05/2022
  * Nombre modificador: Axel Utrera
- *
  */
 
 public class Profesor {
