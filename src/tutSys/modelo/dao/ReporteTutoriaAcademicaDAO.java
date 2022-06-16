@@ -90,13 +90,41 @@ public class ReporteTutoriaAcademicaDAO {
                if (resultadoConsulta.next()){
                    idReporteTutoria = resultadoConsulta.getInt("idReporteTutoriaAcademica");
                }
-           } catch (SQLException excepcion) {
+           } catch (SQLException excepcion){
                excepcion.printStackTrace();
                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
                        " con la base de datos, intentelo mas tarde");
            }
        }
        return idReporteTutoria;
+    }
+
+
+    public static ReporteTutoriaAcademica obtenerReporteTutoriaAcademicaPorId(int idReporteTutoria){
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        ReporteTutoriaAcademica reporteTutoriaAcademica = new ReporteTutoriaAcademica();
+        String consulta = "select Distinct idReporteTutoriaAcademica, tutoriaacademica.numeroTutoria, periodoescolar.identificador " +
+                "from tutsys.reportetutoriaacademica " +
+                "inner join tutsys.tutoracademico on reportetutoriaacademica.idReporteTutoriaAcademica = ? "+
+                "inner join tutsys.tutoriaacademica on reportetutoriaacademica.idTutoriaAcademica = tutoriaacademica.idTutoriaAcademica " +
+                "inner join tutsys.periodoescolar on reportetutoriaacademica.idTutoriaAcademica = tutoriaacademica.idTutoriaAcademica " +
+                "and tutoriaacademica.idPeriodoEscolar = periodoescolar.idPeriodoEscolar;";
+        if (conexionBD != null) {
+            try {
+                PreparedStatement preparacionConsulta = conexionBD.prepareStatement(consulta);
+                preparacionConsulta.setInt(1, idReporteTutoria);
+                ResultSet resultadoConsulta = preparacionConsulta.executeQuery();
+
+                if(resultadoConsulta.next()){
+                    reporteTutoriaAcademica.setIdReporteTutoriaAcademica(resultadoConsulta.getInt("idReporteTutoriaAcademica"));
+                    reporteTutoriaAcademica.setNumeroSesionTutoria(resultadoConsulta.getInt("numeroTutoria"));
+                    reporteTutoriaAcademica.setIdPeriodoEscolar(resultadoConsulta.getString("identificador"));
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return reporteTutoriaAcademica;
     }
 
 }

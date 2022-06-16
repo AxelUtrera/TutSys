@@ -14,10 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import tutSys.modelo.dao.ExperienciaEducativaDAO;
 import tutSys.modelo.dao.ProblematicaAcademicaDAO;
@@ -26,10 +23,12 @@ import tutSys.modelo.dao.ReporteTutoriaAcademicaDAO;
 import tutSys.modelo.pojo.*;
 import tutSys.utilidades.CuadroDialogo;
 
+import javax.swing.text.html.Option;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,7 +74,10 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
 
     @FXML
     void clicCancelar(ActionEvent event) {
-        cerrarVentana();
+        Optional<ButtonType> confirmarRegistro = CuadroDialogo.crearCuadroDialogoConfirmacion("Cancelar", "¿Desea cancelar el registro?");
+        if (confirmarRegistro.get() == ButtonType.OK) {
+            cerrarVentana();
+        }
     }
 
     @FXML
@@ -92,11 +94,13 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
             problematicaAcademica.setDescripcion(textAreaDescripcion.getText());
             problematicaAcademica.setIdReporteTutoria(obtenerIdReporteTutoria(comboBoxTutorias.getValue()));
             problematicaAcademica.setIdExperienciaEducativa(experienciaEducativaRecuperada.getIdExperienciaEducativa());
-
-            ProblematicaAcademicaDAO.agregarProblematicaAcademica(problematicaAcademica);
-            if(CuadroDialogo.crearCuadroDialogoInformacion("Guardado exitoso!", "¡Problematica academica registrada con éxito!")){
+            Optional<ButtonType> confirmarRegistro = CuadroDialogo.crearCuadroDialogoConfirmacion("Confirmar", "¿Desea registrar problematica academica?");
+            if (confirmarRegistro.get() == ButtonType.OK) {
+                ProblematicaAcademicaDAO.agregarProblematicaAcademica(problematicaAcademica);
+                CuadroDialogo.crearCuadroDialogoInformacion("Guardado exitoso!", "¡Problematica academica registrada con éxito!");
                 cerrarVentana();
-            };
+            }
+
 
         }
     }
@@ -177,8 +181,9 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     }
 
     public int obtenerIdReporteTutoria(String cadenaTexto){
-        int subcadena = Integer.parseInt(cadenaTexto.substring(4,5));
-        return subcadena;
+        String subcadena = cadenaTexto.substring(4,6);
+        int idReporte = Integer.valueOf(subcadena.replaceAll("\\s+",""));
+        return idReporte;
     }
 
     public boolean validarCampos() {
