@@ -15,7 +15,13 @@ public class ProblematicaAcademica {
     private int idExperienciaEducativa;
 
     public ProblematicaAcademica(){
+    }
 
+    public ProblematicaAcademica(String descripcion, int numeroResportes, int idReporteTutoria, int idExperienciaEducativa) {
+        this.descripcion = descripcion;
+        this.numeroResportes = numeroResportes;
+        this.idReporteTutoria = idReporteTutoria;
+        this.idExperienciaEducativa = idExperienciaEducativa;
     }
 
     public String getDescripcion() {
