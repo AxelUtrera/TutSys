@@ -46,7 +46,6 @@ public class ProblematicaAcademicaDAO {
                 " experienciaeducativa.idExperienciaEducativa, experienciaeducativa.nombre as nombreEE, profesor.idProfesor, profesor.nombre as nombreProf from reportetutoriaacademica inner join problematicaacademica on \n" +
                 " reportetutoriaacademica.idReporteTutoriaAcademica = problematicaacademica.idReporteTutoria and reportetutoriaacademica.idTutorAcademico = ? inner join experienciaeducativa on \n" +
                 " problematicaacademica.idExperienciaEducativa = experienciaeducativa.idExperienciaEducativa inner join profesor on experienciaeducativa.idProfesor = profesor.idProfesor;";
-
         if(conexionBD != null){
             try{
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
