@@ -1,6 +1,5 @@
 package tutSys.modelo;
 
-import tutSys.utilidades.CuadroDialogo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -104,8 +104,9 @@ public class FXMLEdicionProblematicaAcademicaControlador implements Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         comboBoxTutorias.setValue("ID: "+ problematicaAEditar.getIdProblematicaAcademica()+
-                                  "Sesion" +
+                                  " Sesion " +
                                   " "
         );
         textAreaDescripcion.setText(problematicaAEditar.getDescripcion());

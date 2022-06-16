@@ -99,4 +99,26 @@ public class ReporteTutoriaAcademicaDAO {
        return idReporteTutoria;
     }
 
+    public static ReporteTutoriaAcademica obtenerReporteTutoriaAcademicaPorId(int idReporteTutoria){
+         Connection conexionBD = ConexionBD.abrirConexionBD();
+         ReporteTutoriaAcademica reporte = new ReporteTutoriaAcademica();
+         String consulta = "SELECT * from reportetutoriaacademica where idReporteTutoria = ?";
+         if (conexionBD != null) {
+             try {
+                 PreparedStatement preparacionConsulta = conexionBD.prepareStatement(consulta);
+                 preparacionConsulta.setInt(1, idReporteTutoria);
+                 ResultSet resultadoConsulta = preparacionConsulta.executeQuery();
+
+                 if(resultadoConsulta.next()){
+                     reporte.setIdReporteTutoriaAcademica(resultadoConsulta.getInt("idReporteTutoria"));
+                     reporte.setNumeroAlumnosAsistentes(resultadoConsulta.getInt("numeroAlumnosAsistentes"));
+                     reporte.setNumeroAlumnosRiesgo(resultadoConsulta.getInt("numeroAlumnosRiesgo"));
+                 }
+             } catch (SQLException ex) {
+                 ex.printStackTrace();
+             }
+         }
+        return reporte;
+    }
+
 }

@@ -61,6 +61,7 @@ public class FXMLRegistroReporteTutoriaControlador implements Initializable {
     private Label labelFechaTutoria;
     @FXML
     private Label labelFechaCierreReporte;
+
     public static TutorAcademico tutorAcademico;
     private PeriodoEscolar periodoActual;
 
