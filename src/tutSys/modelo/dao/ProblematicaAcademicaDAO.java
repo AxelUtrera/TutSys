@@ -1,14 +1,16 @@
 package tutSys.modelo.dao;
+
 /**
- *
- * fecha de creacion: 9 / 06 / 2022
- * Ultima modificacion: 10  / 06 / 2022
- * autor: Axel Utrera
- *
- * */
+ * Autor: Axel Utrera
+ * fecha de creacion: 09 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.ProblematicaAcademica;
 import tutSys.modelo.pojo.ProblematicaAcademicaAux;
+import tutSys.utilidades.CuadroDialogo;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -30,6 +32,8 @@ public class ProblematicaAcademicaDAO {
                 conexionBD.close();
             }catch (SQLException ex){
                 ex.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
             }
         }
         return respuesta;
@@ -63,8 +67,29 @@ public class ProblematicaAcademicaDAO {
                 conexionBD.close();
             } catch (SQLException excepcion){
                 excepcion.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
             }
         }
         return problematicasRecuperadas;
+    }
+
+    public static int eliminarProblematicaAcademica(int idProblematicaAcademica){
+        int confirmarEliminacion = 0;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        String consulta = "DELETE FROM problematicaacademica WHERE idProblematicaAcademica = ?";
+        if(conexionBD != null){
+            try {
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, idProblematicaAcademica);
+                confirmarEliminacion = prepararConsulta.executeUpdate();
+                conexionBD.close();
+            } catch (SQLException excepcion) {
+                excepcion.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
+            }
+        }
+        return confirmarEliminacion;
     }
 }

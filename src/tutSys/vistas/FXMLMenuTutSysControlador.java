@@ -3,7 +3,7 @@ package tutSys.vistas;
 /**
  *Autor: Daniel Eduardo Anota Paxtian
  *Fecha de creacion: 10/06/2022
- *Ultima modificacion: 10/06/2022
+ *Ultima modificacion: 13/06/2022
  *Nombre modificador: Daniel Eduardo Anota Paxtian
  */
 

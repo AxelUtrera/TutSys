@@ -1,5 +1,12 @@
 package tutSys.utilidades;
 
+/**
+ * Autor: Daniel Eduardo Anota Paxtian
+ * fecha de creacion: 09 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 

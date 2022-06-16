@@ -1,11 +1,11 @@
 package tutSys.modelo.dao;
+
 /**
- *
- * fecha de creacion: 8 / 06 / 2022
- * ultima modificacion : 10 / 06 / 2022
- * autor: Axel Utrera
- *
- * */
+ * Autor: Axel Utrera
+ * fecha de creacion: 08 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
 
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.ReporteTutoriaAcademica;
@@ -56,7 +56,7 @@ public class ReporteTutoriaAcademicaDAO {
 
 
     public static int registrarReporteTutoriaAcademica(int numeroAsistentes, int numeroRiesgo, int idTutor, int idTutoria){
-        int registroExitoso;
+        int registroExitoso = 0;
         Connection conexionBD = ConexionBD.abrirConexionBD();
         String consulta = "INSERT INTO reportetutoriaacademica " +
                 "(numeroAlumnosAsistentes, numeroAlumnosRiesgo, idTutorAcademico, idTutoriaAcademica) VALUES (?, ?, ?, ?);";
@@ -69,11 +69,10 @@ public class ReporteTutoriaAcademicaDAO {
                 prepararConsulta.setInt(4, idTutoria);
                 registroExitoso = prepararConsulta.executeUpdate();
             } catch (SQLException excepcion){
-                registroExitoso = 0;
                 excepcion.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
             }
-        } else {
-            registroExitoso = 0;
         }
         return registroExitoso;
     }
@@ -93,6 +92,8 @@ public class ReporteTutoriaAcademicaDAO {
                }
            } catch (SQLException excepcion) {
                excepcion.printStackTrace();
+               CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                       " con la base de datos, intentelo mas tarde");
            }
        }
        return idReporteTutoria;

@@ -1,5 +1,12 @@
 package tutSys.modelo.pojo;
 
+/**
+ * Autor: Axel Utrera
+ * fecha de creacion: 08 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 public class TutorAcademico {
     private int idTutorAcademico;
     private String correoElectronico;

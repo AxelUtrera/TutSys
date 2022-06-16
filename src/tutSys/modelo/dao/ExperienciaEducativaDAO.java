@@ -1,7 +1,15 @@
 package tutSys.modelo.dao;
 
+/**
+ * Autor: Axel Utrera
+ * fecha de creacion: 13 / 06 /2022
+ * Ultima modificacion: 15 / 06 / 2022
+ * Nombre modificador: Daniel Eduardo Anota Paxtian
+ */
+
 import tutSys.modelo.ConexionBD;
 import tutSys.modelo.pojo.ExperienciaEducativa;
+import tutSys.utilidades.CuadroDialogo;
 
 /**
  *
@@ -65,9 +73,10 @@ public class ExperienciaEducativaDAO {
                 experienciaEducativaRecuperada.setIdPeriodoEscolar(resultadoConsulta.getInt("idPeriodoEscolar"));
             }
             conexionBD.close();
-
         }catch (SQLException ex){
             ex.printStackTrace();
+            CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                    " con la base de datos, intentelo mas tarde");
         }
         return experienciaEducativaRecuperada;
     }

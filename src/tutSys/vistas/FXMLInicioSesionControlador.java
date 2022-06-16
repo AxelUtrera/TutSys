@@ -1,11 +1,11 @@
-/*
+package tutSys.vistas;
+
+/**
  *Autor: Daniel Eduardo Anota Paxtian
  *Fecha de creacion: 10/06/2022
- *Ultima modificacion: 10/06/2022
+ *Ultima modificacion: 15/06/2022
  *Nombre modificador: Daniel Eduardo Anota Paxtian
  */
-
-package tutSys.vistas;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
