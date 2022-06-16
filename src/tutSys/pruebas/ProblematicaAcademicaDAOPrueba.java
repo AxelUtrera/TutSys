@@ -2,12 +2,12 @@ package tutSys.pruebas;
 
 import org.junit.Assert;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import tutSys.modelo.dao.ProblematicaAcademicaDAO;
 import tutSys.modelo.pojo.ProblematicaAcademica;
 import tutSys.modelo.pojo.ProblematicaAcademicaAux;
 
-import javax.print.attribute.standard.PrinterMessageFromOperator;
-import java.sql.SQLException;
+
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class ProblematicaAcademicaDAOPrueba {
     }
 
     //Prueba mal hecha
-    @Test
+    @Test (expected = ExceptionInInitializerError.class)
     public void agregarProblematicaAcademicaTestFallido(){
         String descripcion = "Problematica Junit";
         ProblematicaAcademica problematicaPrueba = new ProblematicaAcademica(descripcion, 1, 31, 1);
