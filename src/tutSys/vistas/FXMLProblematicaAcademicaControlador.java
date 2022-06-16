@@ -195,13 +195,15 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
         }
     }
 
-    private void actualizarTablaProblematicas(){
+    public void actualizarTablaProblematicas(){
         ArrayList<ProblematicaAcademicaAux> problematicasObtenidas = ProblematicaAcademicaDAO.obtenerProblematicasAcademicas(tutorAcademico.getIdTutorAcademico());
         infoProblematica = FXCollections.observableArrayList();
         infoProblematica.addAll(problematicasObtenidas);
         tableViewProblematicas.setItems(infoProblematica);
         textFieldBusqueda.setText("");
     }
+
+
 
 }
 

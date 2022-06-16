@@ -81,7 +81,7 @@ public class FXMLEdicionProblematicaAcademicaControlador implements Initializabl
     @FXML
     void clicRegistrar(ActionEvent event) {
 
-        if(validarCampos()){
+        if(validarCampos()) {
             //Recuperacion de profesor para obtener su id y asi recuperar el id de la Experiencia Educativa relacionada.
             Profesor profesorRecuperado = ProfesorDAO.recuperarProfesor(comboBoxProfesor.getValue());
             ExperienciaEducativa experienciaEducativaRecuperada = ExperienciaEducativaDAO.recuperarExperienciaEducativa(
@@ -93,12 +93,13 @@ public class FXMLEdicionProblematicaAcademicaControlador implements Initializabl
             problematicaAcademica.setIdReporteTutoria(obtenerIdReporteTutoria(comboBoxTutorias.getValue()));
             problematicaAcademica.setIdExperienciaEducativa(experienciaEducativaRecuperada.getIdExperienciaEducativa());
 
-            ProblematicaAcademicaDAO.agregarProblematicaAcademica(problematicaAcademica);
-            if(CuadroDialogo.crearCuadroDialogoInformacion("Guardado exitoso!", "¡Problematica academica registrada con éxito!")){
+            //ProblematicaAcademicaDAO.agregarProblematicaAcademica(problematicaAcademica);
+            if (CuadroDialogo.crearCuadroDialogoInformacion("Guardado exitoso!", "¡Problematica academica registrada con éxito!")) {
+                FXMLProblematicaAcademicaControlador actualizarTabla = new FXMLProblematicaAcademicaControlador();
+                actualizarTabla.actualizarTablaProblematicas();
                 Stage escenario = (Stage) textFieldNumeroReportes.getScene().getWindow();
                 escenario.close();
-            };
-
+            }
         }
     }
 
