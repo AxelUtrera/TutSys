@@ -186,5 +186,38 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
             tableViewProblematicas.setItems(ordenamientoProblematica);
         }
     }
+
+    public List<int[]> getThem() {
+        List<int[]> list1 = new ArrayList<int[]>();
+        for (int x : theList)
+            if (x == 4)
+                list1.add(x);
+        return list1;
+    }
+
+    boolean confirma(int m, int t, int control){
+            int gde = 0, chi =0, i=0, a;
+        	boolean ban =true;
+        	Scanner sc = new Scanner(System.in);
+        while (i < control){
+            a = sc.nextInt();
+            if (a < m) {
+                chi = chi +1;
+            }else{
+                if(a > m){
+                    gde =gde +1;
+                }
+            }
+            if (gde<=t && chi<=t) {
+                ban = true;
+            }else{
+                ban = false;
+            }
+            i++;
+        }
+        	return ban;
+        }
+
+
 }
 

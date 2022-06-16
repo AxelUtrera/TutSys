@@ -179,7 +179,7 @@ public class FXMLRegistroProblematicaAcademicaControlador implements Initializab
     }
 
     public int obtenerIdReporteTutoria(String cadenaTexto){
-        int subcadena = Integer.parseInt(cadenaTexto.substring(4,6));
+        int subcadena = Integer.parseInt(cadenaTexto.substring(4,5));
         return subcadena;
     }
 
