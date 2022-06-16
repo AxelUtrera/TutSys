@@ -92,4 +92,29 @@ public class ProblematicaAcademicaDAO {
         }
         return confirmarEliminacion;
     }
+
+
+    public static int  actualizarProblematicaAcademica(ProblematicaAcademica problematicaAcademica){
+        int confirmacionConsulta = 0;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        String consulta = "UPDATE problematicaacademica SET numeroReportes = ?, descripcion = ?, idExperienciaEducativa = ? " +
+                          "WHERE idProblematicaAcademica = ?";
+
+        if(conexionBD != null){
+            try{
+                PreparedStatement preparacionConsulta = conexionBD.prepareStatement(consulta);
+                preparacionConsulta.setInt(1,problematicaAcademica.getNumeroResportes());
+                preparacionConsulta.setString(2,problematicaAcademica.getDescripcion());
+                preparacionConsulta.setInt(3, problematicaAcademica.getIdExperienciaEducativa());
+                preparacionConsulta.setInt(4,problematicaAcademica.getIdProblematicaAcademica());
+                confirmacionConsulta = preparacionConsulta.executeUpdate();
+                conexionBD.close();
+            }catch (SQLException ex) {
+                ex.printStackTrace();
+                CuadroDialogo.crearCuadroDialogoError("Sin conexión con la base de datos", "No hay conexión" +
+                        " con la base de datos, intentelo mas tarde");
+            }
+        }
+        return confirmacionConsulta;
+    }
 }

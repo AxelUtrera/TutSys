@@ -12,6 +12,8 @@ public class ReporteTutoriaAcademica {
     private int numeroSesionTutoria;
     private int numeroAlumnosAsistentes;
     private int numeroAlumnosRiesgo;
+    private int idTutorAcademico;
+    private int idTutoriaAcademica;
     private String programaEducativo;
     private String idPeriodoEscolar;
 
@@ -55,6 +57,22 @@ public class ReporteTutoriaAcademica {
 
     public void setNumeroAlumnosAsistentes(int numeroAlumnosAsistentes) {
         this.numeroAlumnosAsistentes = numeroAlumnosAsistentes;
+    }
+
+    public int getIdTutorAcademico() {
+        return idTutorAcademico;
+    }
+
+    public void setIdTutorAcademico(int idTutorAcademico) {
+        this.idTutorAcademico = idTutorAcademico;
+    }
+
+    public int getIdTutoriaAcademica() {
+        return idTutoriaAcademica;
+    }
+
+    public void setIdTutoriaAcademica(int idTutoriaAcademica) {
+        this.idTutoriaAcademica = idTutoriaAcademica;
     }
 
     public int getNumeroAlumnosRiesgo() {

@@ -91,6 +91,7 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
     void clicModificar(ActionEvent event) {
         if (!tableViewProblematicas.getSelectionModel().isEmpty()) {
             FXMLEdicionProblematicaAcademicaControlador.problematicaAEditar = tableViewProblematicas.getSelectionModel().getSelectedItem();
+            FXMLEdicionProblematicaAcademicaControlador.tutorAcademico = tutorAcademico;
             try {
                 FXMLLoader cargador = new FXMLLoader(getClass().getResource("EdicionProblematicaAcademicaVista.fxml"));
                 Parent root = cargador.load();
@@ -100,6 +101,7 @@ public class FXMLProblematicaAcademicaControlador implements Initializable {
                 escenario.setTitle("Edicion de problematica academica");
                 escenario.initModality(Modality.APPLICATION_MODAL);
                 escenario.showAndWait();
+                llenarTablaProblematica();
             } catch (IOException excepcion) {
                 excepcion.printStackTrace();
             }
